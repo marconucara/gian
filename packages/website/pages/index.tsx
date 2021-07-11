@@ -2,8 +2,8 @@ import Head from "next/head";
 import Image from "next/image";
 import React from "react";
 
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 export default function Profile() {
   return (
@@ -51,7 +51,7 @@ export default function Profile() {
                   <div className="w-full lg:w-3/12 px-4 lg:order-2 flex justify-center">
                     <div className="relative -m-16">
                       <Image
-                        alt="..."
+                        alt="Gianluca Santabrogio"
                         src="/profile.png"
                         width="150"
                         height="200"
@@ -113,7 +113,7 @@ export default function Profile() {
                     Laureato in Scienze Motorie e dello Sport
                   </div>
                 </div>
-                <div className="mt-10 py-10 border-t border-gray-300 text-center">
+                <div className="mt-10 py-10 border-t border-gray-300">
                   <div className="flex flex-wrap justify-center">
                     <div className="w-full lg:w-9/12 px-4">
                       <p className="mb-4 text-lg leading-relaxed text-gray-800">
@@ -547,9 +547,7 @@ export default function Profile() {
           <div className="container mx-auto px-4">
             <div className="flex flex-wrap justify-center text-center mb-24">
               <div className="w-full lg:w-6/12 px-4">
-                <h2 className="text-4xl font-semibold">
-                  Non so se ci serve questa sezione per qualcosa
-                </h2>
+                <h2 className="text-4xl font-semibold">Ultimi articoli</h2>
                 <p className="text-lg leading-relaxed m-4 text-gray-600">
                   Occaecat ad cupidatat eiusmod proident. Nostrud velit occaecat
                   mollit fugiat consequat eu reprehenderit culpa sunt. Aute
