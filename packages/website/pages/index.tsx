@@ -731,13 +731,13 @@ export default function Profile() {
                 <h2 className="text-4xl font-semibold text-white">
                   Contattami
                 </h2>
-                <p className="text-lg leading-relaxed mt-4 mb-4 text-gray-500">
+                {/* <p className="text-lg leading-relaxed mt-4 mb-4 text-gray-500">
                   Qua possiamo mettere qualcosa ma per ora non ho in mente
                   niente
-                </p>
+                </p> */}
               </div>
             </div>
-            <div className="flex flex-wrap mt-12 justify-center">
+            {/* <div className="flex flex-wrap mt-12 justify-center">
               <div className="w-full lg:w-3/12 px-4 text-center">
                 <div className="text-gray-900 p-3 w-12 h-12 shadow-lg rounded-full bg-white inline-flex items-center justify-center">
                   <i className="fas fa-medal text-xl"></i>
@@ -774,7 +774,7 @@ export default function Profile() {
                   niente
                 </p>
               </div>
-            </div>
+            </div> */}
           </div>
         </section>
         <section className="relative block py-24 lg:pt-0 bg-gray-900">
