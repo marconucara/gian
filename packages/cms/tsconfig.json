@@ -13,6 +13,6 @@
     "deskStructure/index.tsx"
   ],
   "paths": {
-    "@amusi/*": ["../*"]
+    "@gian/*": ["../*"]
   }
 }

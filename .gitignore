@@ -146,10 +146,6 @@ sketch
 # Ignore build directory
 .serverless
 
-### VisualStudioCode ###
-.vscode/settings.json
-.vscode/terminals.json
-.vscode/launch.json
 
 ### VisualStudioCode Patch ###
 # Ignore all local history of files

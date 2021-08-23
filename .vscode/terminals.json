@@ -1,0 +1,15 @@
+{
+  "autorun": true,
+  "terminals": [
+    {
+      "name": "🌐 website - 3000",
+      "commands": ["clear", "nvm use", "yarn workspace @gian/website dev"],
+      "execute": false
+    },
+    {
+      "name": "📕 cms - 3333",
+      "commands": ["clear", "nvm use", "yarn workspace @gian/cms dev"],
+      "execute": false
+    }
+  ]
+}

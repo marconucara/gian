@@ -5,9 +5,7 @@
   "scripts": {
     "dev": "sanity start",
     "build": "sanity build",
-    "deploy:graphql": "sanity graphql deploy",
-    "deploy": "sst deploy",
-    "deploy:remove": "sst remove"
+    "deploy:graphql": "sanity graphql deploy"
   },
   "dependencies": {
     "@aws-cdk/aws-certificatemanager": "1.105.0",
