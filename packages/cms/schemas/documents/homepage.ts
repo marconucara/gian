@@ -1,4 +1,4 @@
-export const modularPage = {
+export const homepage = {
   name: "homepage",
   title: "Homepage",
   type: "document",

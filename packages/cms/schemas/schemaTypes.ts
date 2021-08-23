@@ -1,9 +1,9 @@
-import { IconType } from 'react-icons';
+import { IconType } from "react-icons";
 
 export type PreviewReturn = {
   title: string;
   subtitle?: string;
-  image?: string;
+  media?: string;
 };
 
 export type RuleType = {
@@ -44,27 +44,29 @@ export interface BaseField {
   description?: string;
   validation?: Validation;
   type: string;
+  preview?: PreviewWithBlocks;
+  blockEditor?: { icon?: IconType };
 }
 
 export interface StringField extends BaseField {
-  type: 'string';
+  type: "string";
   options: {
     list: { value: string; title: string }[];
   };
 }
 
 export interface ArrayField extends BaseField {
-  type: 'array';
+  type: "array";
   of: { type: string; name: string }[];
 }
 
 export interface ReferenceField extends BaseField {
-  type: 'reference';
+  type: "reference";
   to: { type: string }[];
 }
 
 export interface SlugField extends BaseField {
-  type: 'slug';
+  type: "slug";
   options: {
     source: string;
     maxLength: number;
@@ -73,23 +75,28 @@ export interface SlugField extends BaseField {
 }
 
 export interface TextField extends BaseField {
-  type: 'text';
+  type: "text";
   rows: number;
 }
 
 export interface StringType extends BaseField {
-  type: 'string';
+  type: "string";
   options: {
     isHighlighted: boolean;
   };
 }
 
 export interface ImageField extends BaseField {
-  type: 'image';
-  fields: Field[];
+  type: "image";
+  fields?: Field[];
   options: {
     hotspot: boolean;
   };
+}
+
+export interface FileField extends BaseField {
+  type: "file";
+  fields?: Field[];
 }
 
 export type Field =
@@ -99,10 +106,11 @@ export type Field =
   | SlugField
   | TextField
   | ImageField
+  | FileField
   | BaseField;
 
 export type ObjectType = {
-  type: 'object';
+  type: "object";
   title?: string;
   name: string;
   fields: Field[];

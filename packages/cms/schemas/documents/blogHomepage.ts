@@ -1,19 +1,18 @@
-export const modularPage = {
-  name: "category",
-  title: "Category",
+import { MdHome } from "react-icons/md";
+
+import { allSectionTypes } from "../objects/section";
+import { PreviewReturn } from "../schemaTypes";
+
+export const blogHomepage = {
+  name: "blogHomepage",
+  title: "Magazine Homepage",
   type: "document",
+  icon: MdHome,
   fields: [
     {
       name: "seo",
       title: "Seo",
       type: "seo",
-    },
-    {
-      name: "cover",
-      title: "Cover",
-      type: "string",
-      validation: (Rule: { required: () => boolean }): boolean =>
-        Rule.required(),
     },
     {
       name: "title",
@@ -23,16 +22,17 @@ export const modularPage = {
         Rule.required(),
     },
     {
-      name: "intro",
-      title: "Intro",
-      type: "blockContent",
+      name: "sections",
+      title: "Sections",
+      type: "array",
+      of: allSectionTypes,
     },
   ],
   preview: {
     select: {
       title: "title",
       slug: "seo.slug.current",
-      media: "cover",
+      media: "seo.image",
     },
     prepare({
       title,
@@ -42,7 +42,7 @@ export const modularPage = {
       title: string;
       media: string;
       slug: string;
-    }): { title: string; media: string; subtitle: string } {
+    }): PreviewReturn {
       return {
         title,
         media,

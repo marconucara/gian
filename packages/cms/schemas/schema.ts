@@ -3,13 +3,17 @@
 import schemaTypes from "all:part:@sanity/base/schema-type";
 import createSchema from "part:@sanity/base/schema-creator";
 
-import * as category from "./documents/category";
-import * as post from "./documents/post";
+import * as blogAuthor from "./documents/blogAuthor";
+import * as blogArticle from "./documents/blogArticle";
+import * as blogHomepage from "./documents/blogHomepage";
 import { blockContent } from "./objects/blockContent";
 import * as internalLink from "./objects/internalLink";
 import * as seo from "./objects/seo";
+import * as editorialText from "./objects/editorialText";
 import * as seoImage from "./objects/seoImage";
+import * as postListing from "./objects/postListing";
 import * as wrappedTypes from "./objects/wrappedTypes";
+import { section } from "./objects/section";
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -22,12 +26,17 @@ export default createSchema({
     // in the studio.
     // objects
     blockContent,
+    section,
     ...Object.values(internalLink),
     ...Object.values(wrappedTypes),
     ...Object.values(seo),
     ...Object.values(seoImage),
+    ...Object.values(editorialText),
+    ...Object.values(postListing),
+
     // documents
-    ...Object.values(category),
-    ...Object.values(post),
+    ...Object.values(blogAuthor),
+    ...Object.values(blogArticle),
+    ...Object.values(blogHomepage),
   ]),
 });

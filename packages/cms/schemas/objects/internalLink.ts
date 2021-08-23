@@ -1,4 +1,4 @@
-import { FcLink } from "react-icons/fc";
+import { FaLink } from "react-icons/fa";
 
 import { ObjectType } from "../schemaTypes";
 
@@ -7,7 +7,7 @@ export const internalLink: ObjectType = {
   type: "object",
   title: "Internal link",
   blockEditor: {
-    icon: FcLink,
+    icon: FaLink,
   },
   fields: [
     {
@@ -20,13 +20,14 @@ export const internalLink: ObjectType = {
       name: "document",
       title: "Document",
       type: "reference",
-      to: [{ type: "post" }],
+      to: [{ type: "blogArticle" }],
     },
     {
       name: "anchor",
       title: "Anchor",
       type: "string",
     },
+    { type: "boolean", name: "asButton", title: "As Button" },
   ],
   preview: {
     select: {

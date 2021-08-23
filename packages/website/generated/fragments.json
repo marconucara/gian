@@ -1,0 +1,19 @@
+{
+  "possibleTypes": {
+    "BlockOrSeoImage": [
+      "Block",
+      "SeoImage"
+    ],
+    "Document": [
+      "BlogArticle",
+      "BlogAuthor",
+      "BlogHomepage",
+      "SanityFileAsset",
+      "SanityImageAsset"
+    ],
+    "EditorialTextOrPostListing": [
+      "EditorialText",
+      "PostListing"
+    ]
+  }
+}

@@ -19,6 +19,6 @@ a {
 @tailwind components;
 @tailwind utilities;
 
-.post-page .container {
+.post-page.container {
   max-width: 900px;
 }

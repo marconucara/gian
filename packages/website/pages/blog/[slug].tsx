@@ -8,46 +8,44 @@ import Footer from "../../components/Footer";
 export default function Post() {
   return (
     <>
-      <Navbar transparent />
-      <main className="post-page">
-        <section className="relative block" style={{ height: "500px" }}>
-          <div
-            className="absolute top-0 w-full h-full bg-center bg-cover"
-            style={{
-              backgroundImage:
-                "url('https://images.unsplash.com/photo-1617952986600-802f965dcdbc?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=3451&q=80')",
-            }}
+      <section className="relative block" style={{ height: "500px" }}>
+        <div
+          className="absolute top-0 w-full h-full bg-center bg-cover"
+          style={{
+            backgroundImage:
+              "url('https://images.unsplash.com/photo-1617952986600-802f965dcdbc?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=3451&q=80')",
+          }}
+        >
+          <span
+            id="blackOverlay"
+            className="w-full h-full absolute opacity-50 bg-black"
+          ></span>
+        </div>
+        <div
+          className="top-auto bottom-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden"
+          style={{ height: "70px" }}
+        >
+          <svg
+            className="absolute bottom-0 overflow-hidden"
+            xmlns="http://www.w3.org/2000/svg"
+            preserveAspectRatio="none"
+            version="1.1"
+            viewBox="0 0 2560 100"
+            x="0"
+            y="0"
           >
-            <span
-              id="blackOverlay"
-              className="w-full h-full absolute opacity-50 bg-black"
-            ></span>
-          </div>
-          <div
-            className="top-auto bottom-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden"
-            style={{ height: "70px" }}
-          >
-            <svg
-              className="absolute bottom-0 overflow-hidden"
-              xmlns="http://www.w3.org/2000/svg"
-              preserveAspectRatio="none"
-              version="1.1"
-              viewBox="0 0 2560 100"
-              x="0"
-              y="0"
-            >
-              <polygon
-                className="text-gray-200 fill-current"
-                points="2560 0 2560 100 0 100"
-              ></polygon>
-            </svg>
-          </div>
-        </section>
-        <section className="relative py-16 bg-gray-200 ">
-          <div className="container mx-auto px-4 ">
-            <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg -mt-64">
-              <div className="px-6">
-                {/* <div className="flex flex-wrap justify-center">
+            <polygon
+              className="text-gray-200 fill-current"
+              points="2560 0 2560 100 0 100"
+            ></polygon>
+          </svg>
+        </div>
+      </section>
+      <section className="relative py-16 bg-gray-200 ">
+        <div className="container mx-auto px-4 post-page">
+          <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg -mt-64">
+            <div className="px-6">
+              {/* <div className="flex flex-wrap justify-center">
                   <div className="w-full lg:w-4/12 px-4 lg:order-3 lg:text-right lg:self-center">
                     <div className="py-6 px-3 mt-16 sm:mt-0">
                       <button
@@ -82,136 +80,131 @@ export default function Post() {
                     </div>
                   </div>
                 </div> */}
-                <div className="mt-12">
-                  <div className="flex flex-wrap justify-center">
-                    <div className="w-full lg:w-9/12 px-4">
-                      <h1 className="text-4xl font-semibold leading-normal mb-2 text-gray-800 mb-2">
-                        Titolo di un post
-                      </h1>
-                      <p className="mb-4 text-lg leading-relaxed text-gray-800">
-                        Occaecat fugiat amet id ipsum consectetur ex.
-                        Adipisicing voluptate minim ex sit sit minim et enim
-                        pariatur commodo aliqua irure. Pariatur elit minim velit
-                        eiusmod eiusmod nisi minim quis minim irure ad ex ex
-                        deserunt.
-                      </p>
-                      <div className="mb-2 text-gray-700 mt-10 flex items-center">
-                        <Image
-                          alt="Gianluca Santambrogio"
-                          src="/profile.png"
-                          width="50"
-                          height="50"
-                          className="shadow-xl rounded-full h-auto align-middle border-none absolute  -ml-20 lg:-ml-16"
-                          // style={{ maxWidth: "150px" }}
-                        />
-                        <div className="ml-2">
-                          <div>Autore</div>
-                          <div className=" font-bold">
-                            Gianluca Santambrogio
-                          </div>
-                        </div>
-                      </div>
-                      <div className="mb-2 text-gray-700 mt-6">
-                        <i className="fas fa-calendar mr-2 text-lg text-gray-500" />
-                        Pubblicato il 20/08/2021
-                      </div>
-                      <div className="mb-2 text-gray-700">
-                        <i className="fas fa-book mr-2 text-lg text-gray-500" />
-                        Categoria:{" "}
-                        <a href="#" className=" font-bold text-blue-500">
-                          alimentazione
-                        </a>
-                      </div>
-                      <div className="mb-2 text-gray-700">
-                        <i className="fas fa-clock mr-2 text-lg text-gray-500" />
-                        Tempo di lettura 3 min.
+              <div className="mt-12">
+                <div className="flex flex-wrap justify-center">
+                  <div className="w-full lg:w-9/12 px-4">
+                    <h1 className="text-4xl font-semibold leading-normal mb-2 text-gray-800 mb-2">
+                      Titolo di un post
+                    </h1>
+                    <p className="mb-4 text-lg leading-relaxed text-gray-800">
+                      Occaecat fugiat amet id ipsum consectetur ex. Adipisicing
+                      voluptate minim ex sit sit minim et enim pariatur commodo
+                      aliqua irure. Pariatur elit minim velit eiusmod eiusmod
+                      nisi minim quis minim irure ad ex ex deserunt.
+                    </p>
+                    <div className="mb-2 text-gray-700 mt-10 flex items-center">
+                      <Image
+                        alt="Gianluca Santambrogio"
+                        src="/profile.png"
+                        width="50"
+                        height="50"
+                        className="shadow-xl rounded-full h-auto align-middle border-none absolute  -ml-20 lg:-ml-16"
+                        // style={{ maxWidth: "150px" }}
+                      />
+                      <div className="ml-2">
+                        <div>Autore</div>
+                        <div className=" font-bold">Gianluca Santambrogio</div>
                       </div>
                     </div>
-                    <div className="w-full lg:w-9/12 px-4 mt-10 py-10 border-t border-gray-300 text-lg text-gray-800">
-                      <h2 className="mb-4 text-2xl font-bold">
+                    <div className="mb-2 text-gray-700 mt-6">
+                      <i className="fas fa-calendar mr-2 text-lg text-gray-500" />
+                      Pubblicato il 20/08/2021
+                    </div>
+                    <div className="mb-2 text-gray-700">
+                      <i className="fas fa-book mr-2 text-lg text-gray-500" />
+                      Categoria:{" "}
+                      <a href="#" className=" font-bold text-blue-500">
+                        alimentazione
+                      </a>
+                    </div>
+                    <div className="mb-2 text-gray-700">
+                      <i className="fas fa-clock mr-2 text-lg text-gray-500" />
+                      Tempo di lettura 3 min.
+                    </div>
+                  </div>
+                  <div className="w-full lg:w-9/12 px-4 mt-10 py-10 border-t border-gray-300 text-lg text-gray-800">
+                    <h2 className="mb-4 text-2xl font-bold">
+                      Voluptate officia cillum ut dolor proident quis quis ex
+                    </h2>
+                    <p className="mb-4">
+                      <i>Voluptate officia</i> cillum ut dolor proident quis
+                      quis ex excepteur tempor. Duis in ex labore aliqua
+                      excepteur adipisicing in culpa aliquip. Culpa mollit
+                      proident et ullamco ullamco elit ullamco ipsum voluptate
+                      officia non. Sint aliquip amet dolor culpa occaecat
+                      mollit. Anim qui ea excepteur incididunt est{" "}
+                      <strong>ipsum aute</strong> aute pariatur id sunt.
+                    </p>
+                    <p className="mb-4">
+                      Voluptate officia cillum ut dolor proident quis quis ex
+                      excepteur tempor. Duis in ex labore aliqua excepteur
+                      adipisicing in culpa aliquip. Culpa mollit proident et
+                      ullamco ullamco elit ullamco ipsum voluptate officia non.
+                      Sint aliquip amet dolor culpa occaecat mollit. Anim qui ea
+                      excepteur incididunt est <strong>ipsum aute</strong> aute
+                      pariatur id sunt.
+                    </p>
+                    <h2 className="mb-4 text-2xl font-bold">
+                      h2 Voluptate officia cillum ut dolor proident quis quis ex
+                    </h2>
+                    <h3 className="mb-4 text-xl font-bold">
+                      h3 Voluptate officia cillum ut dolor proident quis quis ex
+                    </h3>
+                    <p className="mb-4">
+                      Voluptate officia cillum ut dolor proident quis quis ex
+                      excepteur tempor. Duis in ex labore aliqua excepteur
+                      adipisicing in culpa aliquip. Culpa mollit proident et
+                      ullamco ullamco elit ullamco ipsum voluptate officia non.
+                      Sint aliquip amet dolor culpa occaecat mollit. Anim qui ea
+                      excepteur incididunt est <strong>ipsum aute</strong> aute
+                      pariatur id sunt.
+                    </p>
+                    <ul className="list-disc pl-8 mb-4">
+                      <li className="mb-4">
                         Voluptate officia cillum ut dolor proident quis quis ex
-                      </h2>
-                      <p className="mb-4">
-                        <i>Voluptate officia</i> cillum ut dolor proident quis
-                        quis ex excepteur tempor. Duis in ex labore aliqua
-                        excepteur adipisicing in culpa aliquip. Culpa mollit
-                        proident et ullamco ullamco elit ullamco ipsum voluptate
-                        officia non. Sint aliquip amet dolor culpa occaecat
-                        mollit. Anim qui ea excepteur incididunt est{" "}
-                        <strong>ipsum aute</strong> aute pariatur id sunt.
-                      </p>
-                      <p className="mb-4">
+                        excepteur tempor.{" "}
+                      </li>
+                      <li className="mb-4">
                         Voluptate officia cillum ut dolor proident quis quis ex
-                        excepteur tempor. Duis in ex labore aliqua excepteur
-                        adipisicing in culpa aliquip. Culpa mollit proident et
-                        ullamco ullamco elit ullamco ipsum voluptate officia
-                        non. Sint aliquip amet dolor culpa occaecat mollit. Anim
-                        qui ea excepteur incididunt est{" "}
-                        <strong>ipsum aute</strong> aute pariatur id sunt.
-                      </p>
-                      <h2 className="mb-4 text-2xl font-bold">
-                        h2 Voluptate officia cillum ut dolor proident quis quis
-                        ex
-                      </h2>
-                      <h3 className="mb-4 text-xl font-bold">
-                        h3 Voluptate officia cillum ut dolor proident quis quis
-                        ex
-                      </h3>
-                      <p className="mb-4">
-                        Voluptate officia cillum ut dolor proident quis quis ex
-                        excepteur tempor. Duis in ex labore aliqua excepteur
-                        adipisicing in culpa aliquip. Culpa mollit proident et
-                        ullamco ullamco elit ullamco ipsum voluptate officia
-                        non. Sint aliquip amet dolor culpa occaecat mollit. Anim
-                        qui ea excepteur incididunt est{" "}
-                        <strong>ipsum aute</strong> aute pariatur id sunt.
-                      </p>
-                      <ul className="list-disc pl-8 mb-4">
-                        <li className="mb-4">
-                          Voluptate officia cillum ut dolor proident quis quis
-                          ex excepteur tempor.{" "}
-                        </li>
-                        <li className="mb-4">
-                          Voluptate officia cillum ut dolor proident quis quis
-                          ex excepteur tempor.{" "}
-                        </li>
-                      </ul>
-                      <p className="mb-4">
-                        Voluptate officia cillum ut dolor proident quis quis ex
-                        excepteur tempor. Duis in ex labore aliqua excepteur
-                        adipisicing in culpa aliquip. Culpa mollit proident et
-                        ullamco ullamco elit ullamco ipsum voluptate officia
-                        non. Sint aliquip amet dolor culpa occaecat mollit. Anim
-                        qui ea excepteur incididunt est{" "}
-                        <strong>ipsum aute</strong> aute pariatur id sunt.
-                      </p>
-                      <div className="mb-8">
-                        <Image
-                          alt="test"
-                          src="/profile.png"
-                          width="500"
-                          height="300"
-                          layout="responsive"
+                        excepteur tempor.{" "}
+                      </li>
+                    </ul>
+                    <p className="mb-4">
+                      Voluptate officia cillum ut dolor proident quis quis ex
+                      excepteur tempor. Duis in ex labore aliqua excepteur
+                      adipisicing in culpa aliquip. Culpa mollit proident et
+                      ullamco ullamco elit ullamco ipsum voluptate officia non.
+                      Sint aliquip amet dolor culpa occaecat mollit. Anim qui ea
+                      excepteur incididunt est <strong>ipsum aute</strong> aute
+                      pariatur id sunt.
+                    </p>
+                    <div className="mb-8">
+                      <Image
+                        alt="test"
+                        src="/profile.png"
+                        width="500"
+                        height="300"
+                        layout="responsive"
 
-                          // style={{ maxWidth: "150px" }}
-                        />
-                      </div>
-                      <p className="mb-4">
-                        Voluptate officia cillum ut dolor proident quis quis ex
-                        excepteur tempor. Duis in ex labore aliqua excepteur
-                        adipisicing in culpa aliquip. Culpa mollit proident et
-                        ullamco ullamco elit ullamco ipsum voluptate officia
-                        non. Sint aliquip amet dolor culpa occaecat mollit. Anim
-                        qui ea excepteur incididunt est{" "}
-                        <strong>ipsum aute</strong> aute pariatur id sunt.
-                      </p>
+                        // style={{ maxWidth: "150px" }}
+                      />
                     </div>
+                    <p className="mb-4">
+                      Voluptate officia cillum ut dolor proident quis quis ex
+                      excepteur tempor. Duis in ex labore aliqua excepteur
+                      adipisicing in culpa aliquip. Culpa mollit proident et
+                      ullamco ullamco elit ullamco ipsum voluptate officia non.
+                      Sint aliquip amet dolor culpa occaecat mollit. Anim qui ea
+                      excepteur incididunt est <strong>ipsum aute</strong> aute
+                      pariatur id sunt.
+                    </p>
                   </div>
                 </div>
               </div>
             </div>
+          </div>
 
-            {/* <div className="flex flex-wrap items-center mt-32">
+          {/* <div className="flex flex-wrap items-center mt-32">
               <div className="w-full md:w-5/12 px-4 mr-auto ml-auto">
                 <div className="text-gray-600 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-gray-100">
                   <i className="fas fa-user-friends text-xl"></i>
@@ -273,10 +266,8 @@ export default function Post() {
                 </div>
               </div>
             </div> */}
-          </div>
-        </section>
-      </main>
-      <Footer />
+        </div>
+      </section>
     </>
   );
 }

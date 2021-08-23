@@ -1,0 +1,26 @@
+overwrite: true
+schema: https://quf17mu9.api.sanity.io/v1/graphql/production/default
+documents:
+  - "pages/**/*.tsx"
+  - "pages/**/*.ts"
+  - "components/**/*.tsx"
+  - "components/**/*.ts"
+  - "hooks/**/*.tsx"
+  - "hooks/**/*.ts"
+  - "lib/**/*.tsx"
+  - "lib/**/*.ts"
+generates:
+  generated/graphql.tsx:
+    plugins:
+      - "typescript"
+      - "typescript-operations"
+      - "typescript-react-apollo"
+    config:
+      namingConvention:
+        typeNames: pascal-case#pascalCase
+        enumValues: upper-case#upperCase
+        transformUnderscore: true
+      enumsAsTypes: true
+  generated/fragments.json:
+    plugins:
+      - "fragment-matcher"
