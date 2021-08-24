@@ -1,13 +1,63 @@
-import Head from "next/head";
+import { gql } from "@apollo/client";
 import Image from "next/image";
 import React from "react";
 
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
+import {
+  SanityImageFragmentDoc,
+  SanitySeoFragmentDoc,
+  SectionsFragment,
+  SectionsFragmentDoc,
+  useGetHomepageQuery,
+} from "../../generated/graphql";
+import { RoutingConfig } from "../../lib/routing";
+import { SanitySections } from "../sanity/SanitySections";
+import { SanitySeo } from "../sanity/SanitySeo";
 
-export default function Profile() {
+// this query could be done with this:
+//  Post(id: $id) {
+//  but you would miss deaft for live-preview
+gql`
+  ${SanitySeoFragmentDoc}
+  ${SectionsFragmentDoc}
+  ${SanityImageFragmentDoc}
+  query getHomepage($id: ID!) {
+    page: allHomepage(
+      where: { _id: { matches: $id } }
+      sort: { _updatedAt: DESC }
+      limit: 1
+    ) {
+      _id
+      seo {
+        ...SanitySeo
+      }
+      title
+      cover {
+        ...SanityImage
+      }
+    }
+  }
+`;
+
+type HomepageProps = {
+  routingConfig: RoutingConfig;
+};
+
+export const Homepage: React.FC<HomepageProps> = ({
+  routingConfig: { id, slug, breadcrumbs },
+}) => {
+  const { loading, error, data } = useGetHomepageQuery({
+    variables: {
+      id,
+    },
+  });
+  if (loading) return <div>loading</div>;
+  if (error) return <div>error</div>;
+
+  const page = data?.page?.[0];
+
   return (
     <>
+      <SanitySeo component={page?.seo} slug={slug} />
       <section className="relative block" style={{ height: "500px" }}>
         <div
           className="absolute top-0 w-full h-full bg-center bg-cover"
@@ -886,4 +936,4 @@ export default function Profile() {
       </section>
     </>
   );
-}
+};

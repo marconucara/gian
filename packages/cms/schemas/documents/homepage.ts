@@ -1,7 +1,12 @@
+import { MdHome } from "react-icons/md";
+
+import { PreviewReturn } from "../schemaTypes";
+
 export const homepage = {
   name: "homepage",
   title: "Homepage",
   type: "document",
+  icon: MdHome,
   fields: [
     {
       name: "seo",
@@ -9,16 +14,16 @@ export const homepage = {
       type: "seo",
     },
     {
-      name: "cover",
-      title: "Cover",
+      name: "title",
+      title: "Title",
       type: "string",
       validation: (Rule: { required: () => boolean }): boolean =>
         Rule.required(),
     },
     {
-      name: "title",
-      title: "Title",
-      type: "string",
+      name: "cover",
+      title: "Cover",
+      type: "seoImage",
       validation: (Rule: { required: () => boolean }): boolean =>
         Rule.required(),
     },
@@ -32,7 +37,7 @@ export const homepage = {
     select: {
       title: "title",
       slug: "seo.slug.current",
-      media: "cover",
+      media: "seo.image",
     },
     prepare({
       title,
@@ -42,11 +47,11 @@ export const homepage = {
       title: string;
       media: string;
       slug: string;
-    }): { title: string; media: string; subtitle: string } {
+    }): PreviewReturn {
       return {
         title,
         media,
-        subtitle: `/${slug}`,
+        subtitle: `/`,
       };
     },
   },

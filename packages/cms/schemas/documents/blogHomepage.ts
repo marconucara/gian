@@ -5,7 +5,7 @@ import { PreviewReturn } from "../schemaTypes";
 
 export const blogHomepage = {
   name: "blogHomepage",
-  title: "Magazine Homepage",
+  title: "Blog Homepage",
   type: "document",
   icon: MdHome,
   fields: [

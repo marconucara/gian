@@ -25,14 +25,22 @@ gql`
         }
       }
     }
-    # ... on BlogHomepage {
-    #   title
-    #   seo {
-    #     slug {
-    #       current
-    #     }
-    #   }
-    # }
+    ... on BlogHomepage {
+      title
+      seo {
+        slug {
+          current
+        }
+      }
+    }
+    ... on Homepage {
+      title
+      seo {
+        slug {
+          current
+        }
+      }
+    }
     # ... on ModularPage {
     #   title
     #   seo {
@@ -63,6 +71,10 @@ gql`
     #   _id
     #   title
     # }
+    # ... on Homepage {
+    #   _id
+    #   title
+    # }
     # ... on ModularPage {
     #   _id
     #   title
@@ -73,7 +85,9 @@ gql`
 export const GET_ROUTES = gql`
   ${DocumentRoutingFragmentDoc}
   query getRoutes {
-    allDocument(where: { _type: { in: ["blogArticle"] } }) {
+    allDocument(
+      where: { _type: { in: ["blogArticle", "homepage", "blogHomepage"] } }
+    ) {
       ...DocumentRouting
     }
   }
@@ -161,16 +175,16 @@ export const getRoutingMapBySlug = (
         parentBreadcrumbs.push(...blogHomepageBreadcrumbs);
         break;
       default:
-        // TODO make it recursive and test it
-        if ("parentPage" in document && document.parentPage) {
-          parentSlugArray.push(
-            ...(document.parentPage?.seo?.slug?.current?.split("/") || [])
-          );
-          parentBreadcrumbs.push({
-            title: document.parentPage?.title || "",
-            slug: document.parentPage?.seo?.slug?.current || "",
-          });
-        }
+      // TODO make it recursive and test it
+      // if ("parentPage" in document && document.parentPage) {
+      //   parentSlugArray.push(
+      //     ...(document.parentPage?.seo?.slug?.current?.split("/") || [])
+      //   );
+      //   parentBreadcrumbs.push({
+      //     title: document.parentPage?.title || "",
+      //     slug: document.parentPage?.seo?.slug?.current || "",
+      //   });
+      // }
     }
 
     // TODO: remove / from homepage slug?

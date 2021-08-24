@@ -6,6 +6,7 @@ import createSchema from "part:@sanity/base/schema-creator";
 import * as blogAuthor from "./documents/blogAuthor";
 import * as blogArticle from "./documents/blogArticle";
 import * as blogHomepage from "./documents/blogHomepage";
+import * as homepage from "./documents/homepage";
 import { blockContent } from "./objects/blockContent";
 import * as internalLink from "./objects/internalLink";
 import * as seo from "./objects/seo";
@@ -38,5 +39,6 @@ export default createSchema({
     ...Object.values(blogAuthor),
     ...Object.values(blogArticle),
     ...Object.values(blogHomepage),
+    ...Object.values(homepage),
   ]),
 });

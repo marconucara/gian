@@ -329,6 +329,51 @@ export type GeopointSorting = {
   alt?: Maybe<SortOrder>;
 };
 
+export type Homepage = Document & {
+  __typename?: 'Homepage';
+  /** Document ID */
+  _id?: Maybe<Scalars['ID']>;
+  /** Document type */
+  _type?: Maybe<Scalars['String']>;
+  /** Date the document was created */
+  _createdAt?: Maybe<Scalars['DateTime']>;
+  /** Date the document was last modified */
+  _updatedAt?: Maybe<Scalars['DateTime']>;
+  /** Current document revision */
+  _rev?: Maybe<Scalars['String']>;
+  _key?: Maybe<Scalars['String']>;
+  seo?: Maybe<Seo>;
+  title?: Maybe<Scalars['String']>;
+  cover?: Maybe<SeoImage>;
+  introRaw?: Maybe<Scalars['JSON']>;
+};
+
+export type HomepageFilter = {
+  /** Apply filters on document level */
+  _?: Maybe<SanityDocumentFilter>;
+  _id?: Maybe<IdFilter>;
+  _type?: Maybe<StringFilter>;
+  _createdAt?: Maybe<DatetimeFilter>;
+  _updatedAt?: Maybe<DatetimeFilter>;
+  _rev?: Maybe<StringFilter>;
+  _key?: Maybe<StringFilter>;
+  seo?: Maybe<SeoFilter>;
+  title?: Maybe<StringFilter>;
+  cover?: Maybe<SeoImageFilter>;
+};
+
+export type HomepageSorting = {
+  _id?: Maybe<SortOrder>;
+  _type?: Maybe<SortOrder>;
+  _createdAt?: Maybe<SortOrder>;
+  _updatedAt?: Maybe<SortOrder>;
+  _rev?: Maybe<SortOrder>;
+  _key?: Maybe<SortOrder>;
+  seo?: Maybe<SeoSorting>;
+  title?: Maybe<SortOrder>;
+  cover?: Maybe<SeoImageSorting>;
+};
+
 export type IdFilter = {
   /** Checks if the value is equal to the given input. */
   eq?: Maybe<Scalars['ID']>;
@@ -432,12 +477,14 @@ export type RootQuery = {
   BlogAuthor?: Maybe<BlogAuthor>;
   BlogArticle?: Maybe<BlogArticle>;
   BlogHomepage?: Maybe<BlogHomepage>;
+  Homepage?: Maybe<Homepage>;
   SanityImageAsset?: Maybe<SanityImageAsset>;
   SanityFileAsset?: Maybe<SanityFileAsset>;
   Document?: Maybe<Document>;
   allBlogAuthor: Array<BlogAuthor>;
   allBlogArticle: Array<BlogArticle>;
   allBlogHomepage: Array<BlogHomepage>;
+  allHomepage: Array<Homepage>;
   allSanityImageAsset: Array<SanityImageAsset>;
   allSanityFileAsset: Array<SanityFileAsset>;
   allDocument: Array<Document>;
@@ -455,6 +502,11 @@ export type RootQueryBlogArticleArgs = {
 
 
 export type RootQueryBlogHomepageArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type RootQueryHomepageArgs = {
   id: Scalars['ID'];
 };
 
@@ -493,6 +545,14 @@ export type RootQueryAllBlogArticleArgs = {
 export type RootQueryAllBlogHomepageArgs = {
   where?: Maybe<BlogHomepageFilter>;
   sort?: Maybe<Array<BlogHomepageSorting>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+};
+
+
+export type RootQueryAllHomepageArgs = {
+  where?: Maybe<HomepageFilter>;
+  sort?: Maybe<Array<HomepageSorting>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
 };
@@ -1099,6 +1159,26 @@ export type GetBlogHomepageQuery = (
   )> }
 );
 
+export type GetHomepageQueryVariables = Exact<{
+  id: Scalars['ID'];
+}>;
+
+
+export type GetHomepageQuery = (
+  { __typename?: 'RootQuery' }
+  & { page: Array<(
+    { __typename?: 'Homepage' }
+    & Pick<Homepage, '_id' | 'title'>
+    & { seo?: Maybe<(
+      { __typename?: 'Seo' }
+      & SanitySeoFragment
+    )>, cover?: Maybe<(
+      { __typename?: 'SeoImage' }
+      & SanityImageFragment
+    )> }
+  )> }
+);
+
 export type EditorialTextFragment = (
   { __typename?: 'EditorialText' }
   & Pick<EditorialText, '_key' | 'textRaw'>
@@ -1213,7 +1293,26 @@ type DocumentRoutingBlogAuthorFragment = (
 
 type DocumentRoutingBlogHomepageFragment = (
   { __typename: 'BlogHomepage' }
-  & Pick<BlogHomepage, '_id'>
+  & Pick<BlogHomepage, 'title' | '_id'>
+  & { seo?: Maybe<(
+    { __typename?: 'Seo' }
+    & { slug?: Maybe<(
+      { __typename?: 'Slug' }
+      & Pick<Slug, 'current'>
+    )> }
+  )> }
+);
+
+type DocumentRoutingHomepageFragment = (
+  { __typename: 'Homepage' }
+  & Pick<Homepage, 'title' | '_id'>
+  & { seo?: Maybe<(
+    { __typename?: 'Seo' }
+    & { slug?: Maybe<(
+      { __typename?: 'Slug' }
+      & Pick<Slug, 'current'>
+    )> }
+  )> }
 );
 
 type DocumentRoutingSanityFileAssetFragment = (
@@ -1226,7 +1325,7 @@ type DocumentRoutingSanityImageAssetFragment = (
   & Pick<SanityImageAsset, '_id'>
 );
 
-export type DocumentRoutingFragment = DocumentRoutingBlogArticleFragment | DocumentRoutingBlogAuthorFragment | DocumentRoutingBlogHomepageFragment | DocumentRoutingSanityFileAssetFragment | DocumentRoutingSanityImageAssetFragment;
+export type DocumentRoutingFragment = DocumentRoutingBlogArticleFragment | DocumentRoutingBlogAuthorFragment | DocumentRoutingBlogHomepageFragment | DocumentRoutingHomepageFragment | DocumentRoutingSanityFileAssetFragment | DocumentRoutingSanityImageAssetFragment;
 
 export type InternalLinkFragment = (
   { __typename?: 'BlogArticle' }
@@ -1247,6 +1346,9 @@ export type GetRoutesQuery = (
   ) | (
     { __typename?: 'BlogHomepage' }
     & DocumentRoutingBlogHomepageFragment
+  ) | (
+    { __typename?: 'Homepage' }
+    & DocumentRoutingHomepageFragment
   ) | (
     { __typename?: 'SanityFileAsset' }
     & DocumentRoutingSanityFileAssetFragment
@@ -1335,6 +1437,22 @@ export const DocumentRoutingFragmentDoc = gql`
   _id
   __typename
   ... on BlogArticle {
+    title
+    seo {
+      slug {
+        current
+      }
+    }
+  }
+  ... on BlogHomepage {
+    title
+    seo {
+      slug {
+        current
+      }
+    }
+  }
+  ... on Homepage {
     title
     seo {
       slug {
@@ -1458,6 +1576,53 @@ export function useGetBlogHomepageLazyQuery(baseOptions?: Apollo.LazyQueryHookOp
 export type GetBlogHomepageQueryHookResult = ReturnType<typeof useGetBlogHomepageQuery>;
 export type GetBlogHomepageLazyQueryHookResult = ReturnType<typeof useGetBlogHomepageLazyQuery>;
 export type GetBlogHomepageQueryResult = Apollo.QueryResult<GetBlogHomepageQuery, GetBlogHomepageQueryVariables>;
+export const GetHomepageDocument = gql`
+    query getHomepage($id: ID!) {
+  page: allHomepage(
+    where: {_id: {matches: $id}}
+    sort: {_updatedAt: DESC}
+    limit: 1
+  ) {
+    _id
+    seo {
+      ...SanitySeo
+    }
+    title
+    cover {
+      ...SanityImage
+    }
+  }
+}
+    ${SanitySeoFragmentDoc}
+${SanityImageFragmentDoc}`;
+
+/**
+ * __useGetHomepageQuery__
+ *
+ * To run a query within a React component, call `useGetHomepageQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetHomepageQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetHomepageQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useGetHomepageQuery(baseOptions: Apollo.QueryHookOptions<GetHomepageQuery, GetHomepageQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetHomepageQuery, GetHomepageQueryVariables>(GetHomepageDocument, options);
+      }
+export function useGetHomepageLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetHomepageQuery, GetHomepageQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetHomepageQuery, GetHomepageQueryVariables>(GetHomepageDocument, options);
+        }
+export type GetHomepageQueryHookResult = ReturnType<typeof useGetHomepageQuery>;
+export type GetHomepageLazyQueryHookResult = ReturnType<typeof useGetHomepageLazyQuery>;
+export type GetHomepageQueryResult = Apollo.QueryResult<GetHomepageQuery, GetHomepageQueryVariables>;
 export const GetImageDocument = gql`
     query getImage($id: ID!) {
   SanityImageAsset(id: $id) {
@@ -1555,7 +1720,7 @@ export type GetPostListingLazyQueryHookResult = ReturnType<typeof useGetPostList
 export type GetPostListingQueryResult = Apollo.QueryResult<GetPostListingQuery, GetPostListingQueryVariables>;
 export const GetRoutesDocument = gql`
     query getRoutes {
-  allDocument(where: {_type: {in: ["blogArticle"]}}) {
+  allDocument(where: {_type: {in: ["blogArticle", "homepage", "blogHomepage"]}}) {
     ...DocumentRouting
   }
 }

@@ -4,7 +4,7 @@ import { PreviewReturn } from "../schemaTypes";
 
 export const blogArticle = {
   name: "blogArticle",
-  title: "Magazine Article",
+  title: "Blog Post",
   type: "document",
   icon: MdEdit,
   fields: [

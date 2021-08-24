@@ -1,34 +1,34 @@
-import { MdPerson } from 'react-icons/md';
+import { MdPerson } from "react-icons/md";
 
-import { PreviewReturn } from '../schemaTypes';
+import { PreviewReturn } from "../schemaTypes";
 
 export default {
-  name: 'blogAuthor',
-  title: 'Magazine Author',
+  name: "blogAuthor",
+  title: "Blog Author",
   icon: MdPerson,
-  type: 'document',
+  type: "document",
   fields: [
     {
-      name: 'firstname',
-      title: 'First Name',
-      type: 'string',
+      name: "firstname",
+      title: "First Name",
+      type: "string",
     },
     {
-      name: 'lastname',
-      title: 'Last Name',
-      type: 'string',
+      name: "lastname",
+      title: "Last Name",
+      type: "string",
     },
     {
-      name: 'photo',
-      title: 'Photo',
-      type: 'seoImage',
+      name: "photo",
+      title: "Photo",
+      type: "seoImage",
     },
   ],
   preview: {
     select: {
-      firstname: 'firstname',
-      lastname: 'lastname',
-      media: 'photo',
+      firstname: "firstname",
+      lastname: "lastname",
+      media: "photo",
     },
     prepare({
       firstname,

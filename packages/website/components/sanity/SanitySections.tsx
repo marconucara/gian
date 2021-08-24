@@ -11,7 +11,6 @@ import { BreadcrumbsProps, PaginationProps } from "../../lib/routing";
 import { SanitySection } from "./SanitySection";
 
 gql`
-  # ${HeroFragmentDoc}
   ${SectionFragmentDoc}
   fragment Sections on Section {
     ... on Section {

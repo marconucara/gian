@@ -107,13 +107,13 @@ export const SanityImage: React.FC<Props & (LayoutProps | FixedLayoutProps)> =
       false
     );
 
-    const { width, height, blurDataURL, ...imageProps } = useNextSanityImage(
+    const imageProps = useNextSanityImage(
       { clientConfig: sanityClientConfig },
       asset,
       {
-        ...(placeholder
-          ? { blurUpImageWidth: 10, blurUpImageQuality: 40, blurUpAmount: 10 }
-          : {}),
+        blurUpImageWidth: 10,
+        blurUpImageQuality: 40,
+        blurUpAmount: 10,
         imageBuilder: (imageUrlBuilder, options) => {
           const width =
             widthProp ||
@@ -153,10 +153,10 @@ export const SanityImage: React.FC<Props & (LayoutProps | FixedLayoutProps)> =
     return layout !== "fill" ? (
       <Img
         {...imageProps}
+        src={imageProps?.src || ""}
         alt={asset?.alt || ""}
-        width={width}
-        height={height}
-        blurDataURL={blurDataURL}
+        width={imageProps?.width || ""}
+        height={imageProps?.height || ""}
         objectFit={objectFit}
         sizes={sizes}
         layout={layout}
@@ -166,8 +166,8 @@ export const SanityImage: React.FC<Props & (LayoutProps | FixedLayoutProps)> =
     ) : (
       <Img
         {...imageProps}
+        src={imageProps?.src || ""}
         alt={asset?.alt || ""}
-        blurDataURL={blurDataURL}
         objectFit={objectFit}
         sizes={sizes}
         layout={layout}

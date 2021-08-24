@@ -8,6 +8,7 @@ import { GetRoutesQueryResult } from "../generated/graphql";
 import { Layout } from "../components/Layout";
 import { BlogArticle } from "../components/pages/BlogArticle";
 import { BlogHomepage } from "../components/pages/BlogHomepage";
+import { Homepage } from "../components/pages/Homepage";
 // import { ModularPage } from "../components/pages/ModularPage";
 import { initializeApollo } from "../lib/apolloClient";
 import {
@@ -42,10 +43,13 @@ const SanityRouter: React.FC<Props> = ({ slugArray = [""] }) => {
     <>
       {/* {routingMapBySlug[slug]?.typename === "ModularPage" && (
         <ModularPage routingConfig={routingConfig} />
+      )} */}
+      {routingConfig?.typename === "Homepage" && (
+        <Homepage routingConfig={routingConfig} />
       )}
       {routingConfig?.typename === "BlogHomepage" && (
         <BlogHomepage routingConfig={routingConfig} />
-      )} */}
+      )}
       {routingConfig?.typename === "BlogArticle" && (
         <BlogArticle routingConfig={routingConfig} />
       )}

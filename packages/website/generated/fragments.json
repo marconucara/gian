@@ -8,6 +8,7 @@
       "BlogArticle",
       "BlogAuthor",
       "BlogHomepage",
+      "Homepage",
       "SanityFileAsset",
       "SanityImageAsset"
     ],
