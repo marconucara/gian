@@ -10,6 +10,8 @@ import {
   useGetHomepageQuery,
 } from "../../generated/graphql";
 import { RoutingConfig } from "../../lib/routing";
+import { BlockContent } from "../BlockContent";
+import { HomepageServices } from "../HomepageServices";
 import { SanitySections } from "../sanity/SanitySections";
 import { SanitySeo } from "../sanity/SanitySeo";
 
@@ -34,6 +36,7 @@ gql`
       cover {
         ...SanityImage
       }
+      introRaw
     }
   }
 `;
@@ -62,8 +65,7 @@ export const Homepage: React.FC<HomepageProps> = ({
         <div
           className="absolute top-0 w-full h-full bg-center bg-cover"
           style={{
-            backgroundImage:
-              "url('https://images.unsplash.com/photo-1617952986600-802f965dcdbc?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=3451&q=80')",
+            backgroundImage: `url('${page?.cover?.asset?.url}')`,
           }}
         >
           <span
@@ -164,15 +166,9 @@ export const Homepage: React.FC<HomepageProps> = ({
               <div className="mt-10 py-10 border-t border-gray-300">
                 <div className="flex flex-wrap justify-center">
                   <div className="w-full lg:w-9/12 px-4">
-                    <p className="mb-4 text-lg leading-relaxed text-gray-800">
-                      Come Massoterapista posso risolvere eventuali disfunzioni
-                      o problematiche tramite un percorso terapeutico mirato per
-                      attenuare quelle disfunzioni muscolo-scheletriche che
-                      possono creare problemi o dolore, date dalle abitudini
-                      giornaliere. Come laureato in Scienze Motorie, personal
-                      trainer riconosciuto e posturologo ho una visione
-                      dettagliata e a 360° per risolvere insieme il problema.
-                    </p>
+                    <div className="mb-4 text-lg leading-relaxed text-gray-800">
+                      <BlockContent blocks={page?.introRaw} />
+                    </div>
                     {/* <a
                         href="#pablo"
                         className="font-normal text-blue-500"
@@ -251,348 +247,11 @@ export const Homepage: React.FC<HomepageProps> = ({
         </div>
       </section>
 
-      <section className="relative py-20 bg-gray-200">
-        <div className="container mx-auto px-4">
-          <div className="items-center flex flex-wrap">
-            <div className="w-full md:w-4/12 ml-auto mr-auto px-4">
-              <img
-                alt="..."
-                className="max-w-full rounded-lg shadow-lg"
-                src="https://images.unsplash.com/photo-1461532257246-777de18cd58b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&h=800&q=80"
-              />
-            </div>
-            <div className="w-full md:w-5/12 ml-auto mr-auto px-4">
-              <div className="md:pr-12 py-12">
-                <div className="text-blue-600 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-blue-300">
-                  <i className="fas fa-handshake text-xl"></i>
-                </div>
-                <h3 className="text-3xl font-semibold">
-                  Valutazione e colloquio iniziale
-                </h3>
-                <p className="mt-4 text-lg leading-relaxed text-gray-600">
-                  Ascolto la tua storia e creo una cartella dettagliata. Penso
-                  poi un piano di trattamento personalizzato volto a ottenere i
-                  risultati funzionali che ci siamo posti insieme.
-                </p>
-                {/* <ul className="list-none mt-6">
-                    <li className="py-2">
-                      <div className="flex items-center">
-                        <div>
-                          <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-blue-600 bg-blue-200 mr-3">
-                            <i className="fas fa-fingerprint"></i>
-                          </span>
-                        </div>
-                        <div>
-                          <h4 className="text-gray-600">Ti ascolto</h4>
-                        </div>
-                      </div>
-                    </li>
-                    <li className="py-2">
-                      <div className="flex items-center">
-                        <div>
-                          <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-blue-600 bg-blue-200 mr-3">
-                            <i className="fab fa-html5"></i>
-                          </span>
-                        </div>
-                        <div>
-                          <h4 className="text-gray-600">Ti spiego</h4>
-                        </div>
-                      </div>
-                    </li>
-                    <li className="py-2">
-                      <div className="flex items-center">
-                        <div>
-                          <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-blue-600 bg-blue-200 mr-3">
-                            <i className="far fa-paper-plane"></i>
-                          </span>
-                        </div>
-                        <div>
-                          <h4 className="text-gray-600">
-                            Pianifichiamo insieme
-                          </h4>
-                        </div>
-                      </div>
-                    </li>
-                  </ul> */}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section className="relative py-20 ">
-        <div
-          className="bottom-auto top-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden -mt-20"
-          style={{ height: "80px" }}
-        >
-          <svg
-            className="absolute bottom-0 overflow-hidden"
-            xmlns="http://www.w3.org/2000/svg"
-            preserveAspectRatio="none"
-            version="1.1"
-            viewBox="0 0 2560 100"
-            x="0"
-            y="0"
-          >
-            <polygon
-              className="text-white fill-current"
-              points="2560 0 2560 100 0 100"
-            ></polygon>
-          </svg>
-        </div>
-
-        <div className="container mx-auto px-4">
-          <div className="items-center flex flex-wrap flex-row-reverse">
-            <div className="w-full md:w-4/12 ml-auto mr-auto px-4">
-              <img
-                alt="..."
-                className="max-w-full rounded-lg shadow-lg"
-                src="https://images.unsplash.com/photo-1519823551278-64ac92734fb1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80"
-              />
-            </div>
-            <div className="w-full md:w-5/12 ml-auto mr-auto px-4">
-              <div className="md:pr-12 py-12">
-                <div className="text-blue-600 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-blue-300">
-                  <i className="fas fa-hands text-xl"></i>
-                </div>
-                <h3 className="text-3xl font-semibold">
-                  Trattamento e massaggio
-                </h3>
-                <p className="mt-4 text-lg leading-relaxed text-gray-600">
-                  Dopo aver individuato il problema andremo a risolverlo in una
-                  o più sedute di massaggio.
-                </p>
-                {/* <ul className="list-none mt-6">
-                    <li className="py-2">
-                      <div className="flex items-center">
-                        <div>
-                          <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-blue-600 bg-blue-200 mr-3">
-                            <i className="fas fa-fingerprint"></i>
-                          </span>
-                        </div>
-                        <div>
-                          <h4 className="text-gray-600">
-                            Carefully crafted components
-                          </h4>
-                        </div>
-                      </div>
-                    </li>
-                    <li className="py-2">
-                      <div className="flex items-center">
-                        <div>
-                          <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-blue-600 bg-blue-200 mr-3">
-                            <i className="fab fa-html5"></i>
-                          </span>
-                        </div>
-                        <div>
-                          <h4 className="text-gray-600">
-                            Amazing page examples
-                          </h4>
-                        </div>
-                      </div>
-                    </li>
-                    <li className="py-2">
-                      <div className="flex items-center">
-                        <div>
-                          <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-blue-600 bg-blue-200 mr-3">
-                            <i className="far fa-paper-plane"></i>
-                          </span>
-                        </div>
-                        <div>
-                          <h4 className="text-gray-600">Dynamic components</h4>
-                        </div>
-                      </div>
-                    </li>
-                  </ul> */}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section className="relative py-20 bg-gray-200">
-        <div
-          className="bottom-auto top-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden -mt-20"
-          style={{ height: "80px" }}
-        >
-          <svg
-            className="absolute bottom-0 overflow-hidden"
-            xmlns="http://www.w3.org/2000/svg"
-            preserveAspectRatio="none"
-            version="1.1"
-            viewBox="0 0 2560 100"
-            x="0"
-            y="0"
-          >
-            <polygon
-              className="text-gray-200 fill-current"
-              points="2560 100 0 100 0 0"
-            ></polygon>
-          </svg>
-        </div>
-        <div className="container mx-auto px-4">
-          <div className="items-center flex flex-wrap">
-            <div className="w-full md:w-4/12 ml-auto mr-auto px-4">
-              <img
-                alt="..."
-                className="max-w-full rounded-lg shadow-lg"
-                src="https://images.unsplash.com/photo-1550259979-ed79b48d2a30?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80"
-              />
-            </div>
-            <div className="w-full md:w-5/12 ml-auto mr-auto px-4">
-              <div className="md:pr-12 py-12">
-                <div className="text-blue-600 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-blue-300">
-                  <i className="fas fa-clipboard text-xl"></i>
-                </div>
-                <h3 className="text-3xl font-semibold">
-                  Scheda di allenamento personalizzata per palestra o casa
-                </h3>
-                <p className="mt-4 text-lg leading-relaxed text-gray-600">
-                  Scheda di allenamento su misura in base agli obiettivi della
-                  persona, adattata in base agli impegni. Questo servizio è
-                  fondamentale per assicurare ai miei pazienti salute e
-                  benessere: perché il movimento è l'unica soluzione per stare
-                  bene.
-                </p>
-                {/* <ul className="list-none mt-6">
-                    <li className="py-2">
-                      <div className="flex items-center">
-                        <div>
-                          <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-blue-600 bg-blue-200 mr-3">
-                            <i className="fas fa-fingerprint"></i>
-                          </span>
-                        </div>
-                        <div>
-                          <h4 className="text-gray-600">
-                            Carefully crafted components
-                          </h4>
-                        </div>
-                      </div>
-                    </li>
-                    <li className="py-2">
-                      <div className="flex items-center">
-                        <div>
-                          <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-blue-600 bg-blue-200 mr-3">
-                            <i className="fab fa-html5"></i>
-                          </span>
-                        </div>
-                        <div>
-                          <h4 className="text-gray-600">
-                            Amazing page examples
-                          </h4>
-                        </div>
-                      </div>
-                    </li>
-                    <li className="py-2">
-                      <div className="flex items-center">
-                        <div>
-                          <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-blue-600 bg-blue-200 mr-3">
-                            <i className="far fa-paper-plane"></i>
-                          </span>
-                        </div>
-                        <div>
-                          <h4 className="text-gray-600">Dynamic components</h4>
-                        </div>
-                      </div>
-                    </li>
-                  </ul> */}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section className="relative py-20 ">
-        <div
-          className="bottom-auto top-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden -mt-20"
-          style={{ height: "80px" }}
-        >
-          <svg
-            className="absolute bottom-0 overflow-hidden"
-            xmlns="http://www.w3.org/2000/svg"
-            preserveAspectRatio="none"
-            version="1.1"
-            viewBox="0 0 2560 100"
-            x="0"
-            y="0"
-          >
-            <polygon
-              className="text-white fill-current"
-              points="2560 0 2560 100 0 100"
-            ></polygon>
-          </svg>
-        </div>
-        <div className="container mx-auto px-4">
-          <div className="items-center flex flex-wrap  flex-row-reverse">
-            <div className="w-full md:w-4/12 ml-auto mr-auto px-4">
-              <img
-                alt="..."
-                className="max-w-full rounded-lg shadow-lg"
-                src="https://images.unsplash.com/photo-1540206276207-3af25c08abc4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80"
-              />
-            </div>
-            <div className="w-full md:w-5/12 ml-auto mr-auto px-4">
-              <div className="md:pr-12 py-12">
-                <div className="text-blue-600 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-blue-300">
-                  <i className="fas fa-dumbbell text-xl"></i>
-                </div>
-                <h3 className="text-3xl font-semibold">
-                  Personal training in palestra o a casa
-                </h3>
-                <p className="mt-4 text-lg leading-relaxed text-gray-600">
-                  Puoi essere allenato direttamente da me in palestra o
-                  comodamente a casa con il solo scopo di raggiungere gli
-                  obiettivi prefissati in totale sicurezza sotto la mia
-                  supervisione.
-                </p>
-                {/* <ul className="list-none mt-6">
-                    <li className="py-2">
-                      <div className="flex items-center">
-                        <div>
-                          <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-blue-600 bg-blue-200 mr-3">
-                            <i className="fas fa-fingerprint"></i>
-                          </span>
-                        </div>
-                        <div>
-                          <h4 className="text-gray-600">
-                            Carefully crafted components
-                          </h4>
-                        </div>
-                      </div>
-                    </li>
-                    <li className="py-2">
-                      <div className="flex items-center">
-                        <div>
-                          <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-blue-600 bg-blue-200 mr-3">
-                            <i className="fab fa-html5"></i>
-                          </span>
-                        </div>
-                        <div>
-                          <h4 className="text-gray-600">
-                            Amazing page examples
-                          </h4>
-                        </div>
-                      </div>
-                    </li>
-                    <li className="py-2">
-                      <div className="flex items-center">
-                        <div>
-                          <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-blue-600 bg-blue-200 mr-3">
-                            <i className="far fa-paper-plane"></i>
-                          </span>
-                        </div>
-                        <div>
-                          <h4 className="text-gray-600">Dynamic components</h4>
-                        </div>
-                      </div>
-                    </li>
-                  </ul> */}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <HomepageServices />
 
       <section className="pt-20 pb-48">
         <div className="container mx-auto px-4">
-          <div className="flex flex-wrap justify-center text-center mb-24">
+          <div className="flex flex-wrap justify-center text-center mb-8">
             <div className="w-full lg:w-6/12 px-4">
               <h2 className="text-4xl font-semibold">Ultimi articoli</h2>
               <p className="text-lg leading-relaxed m-4 text-gray-600">
@@ -602,151 +261,30 @@ export const Homepage: React.FC<HomepageProps> = ({
               </p>
             </div>
           </div>
-          <div className="flex flex-wrap">
-            <div className="w-full md:w-6/12 lg:w-3/12 lg:mb-0 mb-12 px-4">
-              <div className="px-6">
-                {/* <img
-                    alt="..."
-                    src={require("assets/img/team-1-800x800.jpg").default}
-                    className="shadow-lg rounded-full max-w-full mx-auto"
-                    style={{ maxWidth: "120px" }}
-                  /> */}
-                <div className="pt-6 text-center">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 xl:gap-16">
+            {new Array(4).fill("").map((el) => (
+              <a className="shadow rounded overflow-hidden">
+                <Image
+                  alt="Gianluca Santabrogio"
+                  src="/profile.png"
+                  width="500"
+                  height="360"
+                  layout="responsive"
+                  className="shadow-lg w-full mx-auto"
+                  // style={{ maxWidth: "150px" }}
+                />
+                <div className="px-6 py-4">
                   <h5 className="text-xl font-bold">Lorem ipsum</h5>
                   <p className="mt-1 text-sm text-gray-500 uppercase font-semibold">
                     Lorem ipsum
                   </p>
-                  <div className="mt-6">
-                    <button
-                      className="bg-blue-400 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                      type="button"
-                    >
-                      <i className="fab fa-twitter"></i>
-                    </button>
-                    <button
-                      className="bg-blue-600 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                      type="button"
-                    >
-                      <i className="fab fa-facebook-f"></i>
-                    </button>
-                    <button
-                      className="bg-blue-500 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                      type="button"
-                    >
-                      <i className="fab fa-dribbble"></i>
-                    </button>
+                  <div className="mt-6 text-gray-500">
+                    <i className="fa fa-clock mr-2" />
+                    Tempo di lettura 4 min
                   </div>
                 </div>
-              </div>
-            </div>
-            <div className="w-full md:w-6/12 lg:w-3/12 lg:mb-0 mb-12 px-4">
-              <div className="px-6">
-                {/* <img
-                    alt="..."
-                    src={require("assets/img/team-2-800x800.jpg").default}
-                    className="shadow-lg rounded-full max-w-full mx-auto"
-                    style={{ maxWidth: "120px" }}
-                  /> */}
-                <div className="pt-6 text-center">
-                  <h5 className="text-xl font-bold">Lorem ipsum</h5>
-                  <p className="mt-1 text-sm text-gray-500 uppercase font-semibold">
-                    Lorem ipsum
-                  </p>
-                  <div className="mt-6">
-                    <button
-                      className="bg-red-600 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                      type="button"
-                    >
-                      <i className="fab fa-google"></i>
-                    </button>
-                    <button
-                      className="bg-blue-600 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                      type="button"
-                    >
-                      <i className="fab fa-facebook-f"></i>
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="w-full md:w-6/12 lg:w-3/12 lg:mb-0 mb-12 px-4">
-              <div className="px-6">
-                {/* <img
-                    alt="..."
-                    src={require("assets/img/team-3-800x800.jpg").default}
-                    className="shadow-lg rounded-full max-w-full mx-auto"
-                    style={{ maxWidth: "120px" }}
-                  /> */}
-                <div className="pt-6 text-center">
-                  <h5 className="text-xl font-bold">Lorem ipsum</h5>
-                  <p className="mt-1 text-sm text-gray-500 uppercase font-semibold">
-                    Lorem ipsum
-                  </p>
-                  <div className="mt-6">
-                    <button
-                      className="bg-red-600 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                      type="button"
-                    >
-                      <i className="fab fa-google"></i>
-                    </button>
-                    <button
-                      className="bg-blue-400 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                      type="button"
-                    >
-                      <i className="fab fa-twitter"></i>
-                    </button>
-                    <button
-                      className="bg-gray-800 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                      type="button"
-                    >
-                      <i className="fab fa-instagram"></i>
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="w-full md:w-6/12 lg:w-3/12 lg:mb-0 mb-12 px-4">
-              <div className="px-6">
-                {/* <img
-                    alt="..."
-                    src={require("assets/img/team-4-470x470.png").default}
-                    className="shadow-lg rounded-full max-w-full mx-auto"
-                    style={{ maxWidth: "120px" }}
-                  /> */}
-                <div className="pt-6 text-center">
-                  <h5 className="text-xl font-bold">Lorem ipsum</h5>
-                  <p className="mt-1 text-sm text-gray-500 uppercase font-semibold">
-                    Lorem ipsum
-                  </p>
-                  <div className="mt-6">
-                    <button
-                      className="bg-blue-500 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                      type="button"
-                    >
-                      <i className="fab fa-dribbble"></i>
-                    </button>
-                    <button
-                      className="bg-red-600 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                      type="button"
-                    >
-                      <i className="fab fa-google"></i>
-                    </button>
-                    <button
-                      className="bg-blue-400 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                      type="button"
-                    >
-                      <i className="fab fa-twitter"></i>
-                    </button>
-                    <button
-                      className="bg-gray-800 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                      type="button"
-                    >
-                      <i className="fab fa-instagram"></i>
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
+              </a>
+            ))}
           </div>
         </div>
       </section>
@@ -774,7 +312,7 @@ export const Homepage: React.FC<HomepageProps> = ({
 
         <div className="container mx-auto px-4 lg:pt-24 lg:pb-64">
           <div className="flex flex-wrap text-center justify-center">
-            <div className="w-full lg:w-6/12 px-4">
+            <div className="w-full lg:w-6/12 px-4 mb-8">
               <h2 className="text-4xl font-semibold text-white">Contattami</h2>
               {/* <p className="text-lg leading-relaxed mt-4 mb-4 text-gray-500">
                   Qua possiamo mettere qualcosa ma per ora non ho in mente
@@ -820,11 +358,8 @@ export const Homepage: React.FC<HomepageProps> = ({
                 </p>
               </div>
             </div> */}
-        </div>
-      </section>
-      <section className="relative block py-24 lg:pt-0 bg-gray-900">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-wrap justify-center lg:-mt-64 -mt-48">
+
+          <div className="flex flex-wrap justify-center">
             <div className="w-full lg:w-6/12 px-4">
               <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-gray-200">
                 <div className="flex-auto p-5 lg:p-10">
@@ -845,6 +380,7 @@ export const Homepage: React.FC<HomepageProps> = ({
                       className="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
                       style={{ transition: "all .15s ease" }}
                     >
+                      <option value=""></option>
                       <option value="Trattamento massoterapico">
                         Trattamento massoterapico
                       </option>

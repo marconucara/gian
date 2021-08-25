@@ -67,6 +67,8 @@ export async function getStaticPaths(): Promise<GetStaticPathsResult> {
     query: GET_ROUTES,
   });
 
+  console.log("DEBUG ALL DOCUMENT", data?.allDocument);
+
   const routingMapBySlug = getRoutingMapBySlug(data?.allDocument);
 
   Object.values(routingMapBySlug).forEach((doc) => {

@@ -108,7 +108,7 @@ const getSerializers = ({
       }
 
       return (
-        <Component as="p" lineHeight="normal">
+        <Component as="p" className="mb-4">
           {children}
         </Component>
       );
@@ -125,7 +125,7 @@ const getSerializers = ({
               layout="responsive"
             />
           )}
-          {caption}
+          <p className="mb-4 text-sm italic text-center">{caption}</p>
         </>
       );
     },

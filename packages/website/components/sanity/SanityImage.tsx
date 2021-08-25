@@ -56,6 +56,7 @@ type Props = {
   asset: SanityImageFragment;
   objectFit?: React.ComponentProps<typeof Img>["objectFit"];
   priority?: boolean;
+  className?: string;
 };
 
 type LayoutProps = {
@@ -101,6 +102,7 @@ export const SanityImage: React.FC<Props & (LayoutProps | FixedLayoutProps)> =
     height: heightProp,
     aspectRatioResponsive,
     priority,
+    ...props
   }) => {
     const isAspectRatioResponsive = useClientMediaQuery(
       aspectRatioResponsive?.mediaQuery || { minWidth: 800 },
@@ -153,6 +155,7 @@ export const SanityImage: React.FC<Props & (LayoutProps | FixedLayoutProps)> =
     return layout !== "fill" ? (
       <Img
         {...imageProps}
+        {...props}
         src={imageProps?.src || ""}
         alt={asset?.alt || ""}
         width={imageProps?.width || ""}
@@ -166,6 +169,7 @@ export const SanityImage: React.FC<Props & (LayoutProps | FixedLayoutProps)> =
     ) : (
       <Img
         {...imageProps}
+        {...props}
         src={imageProps?.src || ""}
         alt={asset?.alt || ""}
         objectFit={objectFit}

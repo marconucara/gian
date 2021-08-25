@@ -206,6 +206,8 @@ export const getRoutingMapBySlug = (
     const newRoutes: Record<string, RoutingConfig> = {};
     switch (document.__typename) {
       case "BlogHomepage": {
+        console.log("extract blog homepage");
+
         const blogArticles =
           allDocument?.filter(
             (document) => document.__typename === "BlogArticle"

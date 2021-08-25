@@ -1168,7 +1168,7 @@ export type GetHomepageQuery = (
   { __typename?: 'RootQuery' }
   & { page: Array<(
     { __typename?: 'Homepage' }
-    & Pick<Homepage, '_id' | 'title'>
+    & Pick<Homepage, '_id' | 'title' | 'introRaw'>
     & { seo?: Maybe<(
       { __typename?: 'Seo' }
       & SanitySeoFragment
@@ -1591,6 +1591,7 @@ export const GetHomepageDocument = gql`
     cover {
       ...SanityImage
     }
+    introRaw
   }
 }
     ${SanitySeoFragmentDoc}
