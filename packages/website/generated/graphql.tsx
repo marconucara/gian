@@ -79,6 +79,8 @@ export type BlogArticleFilter = {
   indexHeading?: Maybe<StringFilter>;
 };
 
+export type BlogArticleOrBlogHomepageOrHomepageOrModularPage = BlogArticle | BlogHomepage | Homepage | ModularPage;
+
 export type BlogArticleSorting = {
   _id?: Maybe<SortOrder>;
   _type?: Maybe<SortOrder>;
@@ -154,7 +156,7 @@ export type BlogHomepage = Document & {
   _key?: Maybe<Scalars['String']>;
   seo?: Maybe<Seo>;
   title?: Maybe<Scalars['String']>;
-  sections?: Maybe<Array<Maybe<Section>>>;
+  sections?: Maybe<Array<Maybe<HeroOrSection>>>;
 };
 
 export type BlogHomepageFilter = {
@@ -329,6 +331,27 @@ export type GeopointSorting = {
   alt?: Maybe<SortOrder>;
 };
 
+export type Hero = {
+  __typename?: 'Hero';
+  _key?: Maybe<Scalars['String']>;
+  _type?: Maybe<Scalars['String']>;
+  image?: Maybe<SeoImage>;
+};
+
+export type HeroFilter = {
+  _key?: Maybe<StringFilter>;
+  _type?: Maybe<StringFilter>;
+  image?: Maybe<SeoImageFilter>;
+};
+
+export type HeroOrSection = Hero | Section;
+
+export type HeroSorting = {
+  _key?: Maybe<SortOrder>;
+  _type?: Maybe<SortOrder>;
+  image?: Maybe<SeoImageSorting>;
+};
+
 export type Homepage = Document & {
   __typename?: 'Homepage';
   /** Document ID */
@@ -430,7 +453,7 @@ export type InternalLink = {
   _type?: Maybe<Scalars['String']>;
   /** Optional override */
   title?: Maybe<Scalars['String']>;
-  document?: Maybe<BlogArticle>;
+  document?: Maybe<BlogArticleOrBlogHomepageOrHomepageOrModularPage>;
   anchor?: Maybe<Scalars['String']>;
   asButton?: Maybe<Scalars['Boolean']>;
 };
@@ -439,7 +462,6 @@ export type InternalLinkFilter = {
   _key?: Maybe<StringFilter>;
   _type?: Maybe<StringFilter>;
   title?: Maybe<StringFilter>;
-  document?: Maybe<BlogArticleFilter>;
   anchor?: Maybe<StringFilter>;
   asButton?: Maybe<BooleanFilter>;
 };
@@ -452,6 +474,54 @@ export type InternalLinkSorting = {
   asButton?: Maybe<SortOrder>;
 };
 
+
+export type ModularPage = Document & {
+  __typename?: 'ModularPage';
+  /** Document ID */
+  _id?: Maybe<Scalars['ID']>;
+  /** Document type */
+  _type?: Maybe<Scalars['String']>;
+  /** Date the document was created */
+  _createdAt?: Maybe<Scalars['DateTime']>;
+  /** Date the document was last modified */
+  _updatedAt?: Maybe<Scalars['DateTime']>;
+  /** Current document revision */
+  _rev?: Maybe<Scalars['String']>;
+  _key?: Maybe<Scalars['String']>;
+  seo?: Maybe<Seo>;
+  /** Leave it empty normal pages, use it for sub-pages. This field will reflects breacrumbs and links. */
+  parentPage?: Maybe<ModularPage>;
+  title?: Maybe<Scalars['String']>;
+  breadcrumb?: Maybe<Scalars['Boolean']>;
+  sections?: Maybe<Array<Maybe<HeroOrSection>>>;
+};
+
+export type ModularPageFilter = {
+  /** Apply filters on document level */
+  _?: Maybe<SanityDocumentFilter>;
+  _id?: Maybe<IdFilter>;
+  _type?: Maybe<StringFilter>;
+  _createdAt?: Maybe<DatetimeFilter>;
+  _updatedAt?: Maybe<DatetimeFilter>;
+  _rev?: Maybe<StringFilter>;
+  _key?: Maybe<StringFilter>;
+  seo?: Maybe<SeoFilter>;
+  parentPage?: Maybe<ModularPageFilter>;
+  title?: Maybe<StringFilter>;
+  breadcrumb?: Maybe<BooleanFilter>;
+};
+
+export type ModularPageSorting = {
+  _id?: Maybe<SortOrder>;
+  _type?: Maybe<SortOrder>;
+  _createdAt?: Maybe<SortOrder>;
+  _updatedAt?: Maybe<SortOrder>;
+  _rev?: Maybe<SortOrder>;
+  _key?: Maybe<SortOrder>;
+  seo?: Maybe<SeoSorting>;
+  title?: Maybe<SortOrder>;
+  breadcrumb?: Maybe<SortOrder>;
+};
 
 export type PostListing = {
   __typename?: 'PostListing';
@@ -478,6 +548,7 @@ export type RootQuery = {
   BlogArticle?: Maybe<BlogArticle>;
   BlogHomepage?: Maybe<BlogHomepage>;
   Homepage?: Maybe<Homepage>;
+  ModularPage?: Maybe<ModularPage>;
   SanityImageAsset?: Maybe<SanityImageAsset>;
   SanityFileAsset?: Maybe<SanityFileAsset>;
   Document?: Maybe<Document>;
@@ -485,6 +556,7 @@ export type RootQuery = {
   allBlogArticle: Array<BlogArticle>;
   allBlogHomepage: Array<BlogHomepage>;
   allHomepage: Array<Homepage>;
+  allModularPage: Array<ModularPage>;
   allSanityImageAsset: Array<SanityImageAsset>;
   allSanityFileAsset: Array<SanityFileAsset>;
   allDocument: Array<Document>;
@@ -507,6 +579,11 @@ export type RootQueryBlogHomepageArgs = {
 
 
 export type RootQueryHomepageArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type RootQueryModularPageArgs = {
   id: Scalars['ID'];
 };
 
@@ -553,6 +630,14 @@ export type RootQueryAllBlogHomepageArgs = {
 export type RootQueryAllHomepageArgs = {
   where?: Maybe<HomepageFilter>;
   sort?: Maybe<Array<HomepageSorting>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+};
+
+
+export type RootQueryAllModularPageArgs = {
+  where?: Maybe<ModularPageFilter>;
+  sort?: Maybe<Array<ModularPageSorting>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
 };
@@ -1153,8 +1238,11 @@ export type GetBlogHomepageQuery = (
       { __typename?: 'Seo' }
       & SanitySeoFragment
     )>, sections?: Maybe<Array<Maybe<(
+      { __typename?: 'Hero' }
+      & SectionsHeroFragment
+    ) | (
       { __typename?: 'Section' }
-      & SectionsFragment
+      & SectionsSectionFragment
     )>>> }
   )> }
 );
@@ -1179,9 +1267,41 @@ export type GetHomepageQuery = (
   )> }
 );
 
+export type GetModularPageQueryVariables = Exact<{
+  id: Scalars['ID'];
+}>;
+
+
+export type GetModularPageQuery = (
+  { __typename?: 'RootQuery' }
+  & { page: Array<(
+    { __typename?: 'ModularPage' }
+    & Pick<ModularPage, '_id' | 'title'>
+    & { seo?: Maybe<(
+      { __typename?: 'Seo' }
+      & SanitySeoFragment
+    )>, sections?: Maybe<Array<Maybe<(
+      { __typename?: 'Hero' }
+      & SectionsHeroFragment
+    ) | (
+      { __typename?: 'Section' }
+      & SectionsSectionFragment
+    )>>> }
+  )> }
+);
+
 export type EditorialTextFragment = (
   { __typename?: 'EditorialText' }
   & Pick<EditorialText, '_key' | 'textRaw'>
+);
+
+export type HeroFragment = (
+  { __typename?: 'Hero' }
+  & Pick<Hero, '_key'>
+  & { image?: Maybe<(
+    { __typename?: 'SeoImage' }
+    & SanityImageFragment
+  )> }
 );
 
 export type GetImageQueryVariables = Exact<{
@@ -1248,10 +1368,17 @@ export type SectionFragment = (
   )>>> }
 );
 
-export type SectionsFragment = (
+type SectionsHeroFragment = (
+  { __typename?: 'Hero' }
+  & HeroFragment
+);
+
+type SectionsSectionFragment = (
   { __typename?: 'Section' }
   & SectionFragment
 );
+
+export type SectionsFragment = SectionsHeroFragment | SectionsSectionFragment;
 
 export type SanitySeoFragment = (
   { __typename?: 'Seo' }
@@ -1315,6 +1442,28 @@ type DocumentRoutingHomepageFragment = (
   )> }
 );
 
+type DocumentRoutingModularPageFragment = (
+  { __typename: 'ModularPage' }
+  & Pick<ModularPage, 'title' | '_id'>
+  & { seo?: Maybe<(
+    { __typename?: 'Seo' }
+    & { slug?: Maybe<(
+      { __typename?: 'Slug' }
+      & Pick<Slug, 'current'>
+    )> }
+  )>, parentPage?: Maybe<(
+    { __typename?: 'ModularPage' }
+    & Pick<ModularPage, '_id' | 'title'>
+    & { seo?: Maybe<(
+      { __typename?: 'Seo' }
+      & { slug?: Maybe<(
+        { __typename?: 'Slug' }
+        & Pick<Slug, 'current'>
+      )> }
+    )> }
+  )> }
+);
+
 type DocumentRoutingSanityFileAssetFragment = (
   { __typename: 'SanityFileAsset' }
   & Pick<SanityFileAsset, '_id'>
@@ -1325,12 +1474,7 @@ type DocumentRoutingSanityImageAssetFragment = (
   & Pick<SanityImageAsset, '_id'>
 );
 
-export type DocumentRoutingFragment = DocumentRoutingBlogArticleFragment | DocumentRoutingBlogAuthorFragment | DocumentRoutingBlogHomepageFragment | DocumentRoutingHomepageFragment | DocumentRoutingSanityFileAssetFragment | DocumentRoutingSanityImageAssetFragment;
-
-export type InternalLinkFragment = (
-  { __typename?: 'BlogArticle' }
-  & Pick<BlogArticle, '_id' | 'title'>
-);
+export type DocumentRoutingFragment = DocumentRoutingBlogArticleFragment | DocumentRoutingBlogAuthorFragment | DocumentRoutingBlogHomepageFragment | DocumentRoutingHomepageFragment | DocumentRoutingModularPageFragment | DocumentRoutingSanityFileAssetFragment | DocumentRoutingSanityImageAssetFragment;
 
 export type GetRoutesQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -1350,6 +1494,9 @@ export type GetRoutesQuery = (
     { __typename?: 'Homepage' }
     & DocumentRoutingHomepageFragment
   ) | (
+    { __typename?: 'ModularPage' }
+    & DocumentRoutingModularPageFragment
+  ) | (
     { __typename?: 'SanityFileAsset' }
     & DocumentRoutingSanityFileAssetFragment
   ) | (
@@ -1358,6 +1505,27 @@ export type GetRoutesQuery = (
   )> }
 );
 
+export const EditorialTextFragmentDoc = gql`
+    fragment EditorialText on EditorialText {
+  _key
+  textRaw
+}
+    `;
+export const SectionFragmentDoc = gql`
+    fragment Section on Section {
+  _key
+  theme
+  components {
+    __typename
+    ... on EditorialText {
+      ...EditorialText
+    }
+    ... on PostListing {
+      _key
+    }
+  }
+}
+    ${EditorialTextFragmentDoc}`;
 export const SanityImageFragmentDoc = gql`
     fragment SanityImage on SeoImage {
   alt
@@ -1382,34 +1550,25 @@ export const SanityImageFragmentDoc = gql`
   }
 }
     `;
-export const EditorialTextFragmentDoc = gql`
-    fragment EditorialText on EditorialText {
+export const HeroFragmentDoc = gql`
+    fragment Hero on Hero {
   _key
-  textRaw
-}
-    `;
-export const SectionFragmentDoc = gql`
-    fragment Section on Section {
-  _key
-  theme
-  components {
-    __typename
-    ... on EditorialText {
-      ...EditorialText
-    }
-    ... on PostListing {
-      _key
-    }
+  image {
+    ...SanityImage
   }
 }
-    ${EditorialTextFragmentDoc}`;
+    ${SanityImageFragmentDoc}`;
 export const SectionsFragmentDoc = gql`
-    fragment Sections on Section {
+    fragment Sections on HeroOrSection {
   ... on Section {
     ...Section
   }
+  ... on Hero {
+    ...Hero
+  }
 }
-    ${SectionFragmentDoc}`;
+    ${SectionFragmentDoc}
+${HeroFragmentDoc}`;
 export const SanitySeoFragmentDoc = gql`
     fragment SanitySeo on Seo {
   id: slug {
@@ -1460,13 +1619,22 @@ export const DocumentRoutingFragmentDoc = gql`
       }
     }
   }
-}
-    `;
-export const InternalLinkFragmentDoc = gql`
-    fragment InternalLink on BlogArticle {
-  ... on BlogArticle {
-    _id
+  ... on ModularPage {
     title
+    seo {
+      slug {
+        current
+      }
+    }
+    parentPage {
+      _id
+      title
+      seo {
+        slug {
+          current
+        }
+      }
+    }
   }
 }
     `;
@@ -1624,6 +1792,53 @@ export function useGetHomepageLazyQuery(baseOptions?: Apollo.LazyQueryHookOption
 export type GetHomepageQueryHookResult = ReturnType<typeof useGetHomepageQuery>;
 export type GetHomepageLazyQueryHookResult = ReturnType<typeof useGetHomepageLazyQuery>;
 export type GetHomepageQueryResult = Apollo.QueryResult<GetHomepageQuery, GetHomepageQueryVariables>;
+export const GetModularPageDocument = gql`
+    query getModularPage($id: ID!) {
+  page: allModularPage(
+    where: {_id: {matches: $id}}
+    sort: {_updatedAt: DESC}
+    limit: 1
+  ) {
+    _id
+    seo {
+      ...SanitySeo
+    }
+    title
+    sections {
+      ...Sections
+    }
+  }
+}
+    ${SanitySeoFragmentDoc}
+${SectionsFragmentDoc}`;
+
+/**
+ * __useGetModularPageQuery__
+ *
+ * To run a query within a React component, call `useGetModularPageQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetModularPageQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetModularPageQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useGetModularPageQuery(baseOptions: Apollo.QueryHookOptions<GetModularPageQuery, GetModularPageQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetModularPageQuery, GetModularPageQueryVariables>(GetModularPageDocument, options);
+      }
+export function useGetModularPageLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetModularPageQuery, GetModularPageQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetModularPageQuery, GetModularPageQueryVariables>(GetModularPageDocument, options);
+        }
+export type GetModularPageQueryHookResult = ReturnType<typeof useGetModularPageQuery>;
+export type GetModularPageLazyQueryHookResult = ReturnType<typeof useGetModularPageLazyQuery>;
+export type GetModularPageQueryResult = Apollo.QueryResult<GetModularPageQuery, GetModularPageQueryVariables>;
 export const GetImageDocument = gql`
     query getImage($id: ID!) {
   SanityImageAsset(id: $id) {
@@ -1721,7 +1936,9 @@ export type GetPostListingLazyQueryHookResult = ReturnType<typeof useGetPostList
 export type GetPostListingQueryResult = Apollo.QueryResult<GetPostListingQuery, GetPostListingQueryVariables>;
 export const GetRoutesDocument = gql`
     query getRoutes {
-  allDocument(where: {_type: {in: ["blogArticle", "homepage", "blogHomepage"]}}) {
+  allDocument(
+    where: {_type: {in: ["blogArticle", "homepage", "blogHomepage", "modularPage"]}}
+  ) {
     ...DocumentRouting
   }
 }

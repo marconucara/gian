@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 
 export default function Footer() {
   return (
@@ -31,30 +32,20 @@ export default function Footer() {
                 Seguimi sui social network
               </h5>
               <div className="mt-6">
-                <button
-                  className="bg-white text-blue-400 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2 p-3"
-                  type="button"
-                >
-                  <i className="flex fab fa-twitter"></i>
-                </button>
-                <button
-                  className="bg-white text-blue-600 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2 p-3"
-                  type="button"
+                <a
+                  href="https://www.facebook.com/dr.gianlucasantambrogio"
+                  target="_blank"
+                  className="bg-white text-blue-600 shadow-lg font-normal h-12 w-12 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2 p-3"
                 >
                   <i className="flex fab fa-facebook-square"></i>
-                </button>
-                <button
-                  className="bg-white text-pink-400 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2 p-3"
-                  type="button"
-                >
-                  <i className="flex fab fa-dribbble"></i>
-                </button>
-                <button
-                  className="bg-white text-gray-900 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2 p-3"
-                  type="button"
+                </a>
+                <a
+                  href="https://www.instagram.com/dr.gianlucasantambrogio"
+                  target="_blank"
+                  className="bg-white text-gray-900 shadow-lg font-normal h-12 w-12 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2 p-3"
                 >
                   <i className="flex fab fa-instagram"></i>
-                </button>
+                </a>
               </div>
             </div>
             <div className="w-full lg:w-6/12 px-4">
@@ -65,32 +56,22 @@ export default function Footer() {
                   </span>
                   <ul className="list-unstyled">
                     <li>
-                      <a
-                        className="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
-                        href="https://www.creative-tim.com/presentation"
-                      >
-                        Su di me
-                      </a>
+                      <Link href="/su-di-me">
+                        <a className="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm">
+                          Su di me
+                        </a>
+                      </Link>
                     </li>
                     <li>
-                      <a
-                        className="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
-                        href="https://blog.creative-tim.com"
-                      >
-                        Blog
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        className="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
-                        href="https://www.github.com/creativetimofficial"
-                      >
-                        Privacy Policy
-                      </a>
+                      <Link href="/blog">
+                        <a className="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm">
+                          Blog
+                        </a>
+                      </Link>
                     </li>
                   </ul>
                 </div>
-                <div className="w-full lg:w-4/12 px-4">
+                {/* <div className="w-full lg:w-4/12 px-4">
                   <span className="block uppercase text-gray-600 text-sm font-semibold mb-2">
                     Ultime dal blog
                   </span>
@@ -120,7 +101,7 @@ export default function Footer() {
                       </a>
                     </li>
                   </ul>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>

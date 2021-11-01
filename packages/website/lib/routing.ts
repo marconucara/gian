@@ -5,8 +5,7 @@ import {
   GetRoutesQuery,
   useGetRoutesQuery,
 } from "../generated/graphql";
-export const BLOG_ARTICLES_PER_PAGE = 12;
-export const BLOG_ARTICLES_PER_PAGE_INDEX = 12;
+export const BLOG_ARTICLES_PER_PAGE = 4;
 
 export const BASE_URL = `${
   process.env.NEXT_PUBLIC_STOREFRONT_URL ||
@@ -41,52 +40,56 @@ gql`
         }
       }
     }
-    # ... on ModularPage {
-    #   title
-    #   seo {
-    #     slug {
-    #       current
-    #     }
-    #   }
-    #   parentPage {
-    #     _id
-    #     title
-    #     seo {
-    #       slug {
-    #         current
-    #       }
-    #     }
-    #   }
-    # }
+    ... on ModularPage {
+      title
+      seo {
+        slug {
+          current
+        }
+      }
+      parentPage {
+        _id
+        title
+        seo {
+          slug {
+            current
+          }
+        }
+      }
+    }
   }
 `;
 
-gql`
-  fragment InternalLink on BlogArticle {
-    ... on BlogArticle {
-      _id
-      title
-    }
-    # ... on BlogHomepage {
-    #   _id
-    #   title
-    # }
-    # ... on Homepage {
-    #   _id
-    #   title
-    # }
-    # ... on ModularPage {
-    #   _id
-    #   title
-    # }
-  }
-`;
+// gql`
+//   fragment InternalLink on BlogArticle {
+//     ... on BlogArticle {
+//       _id
+//       title
+//     }
+//     ... on BlogHomepage {
+//       _id
+//       title
+//     }
+//     ... on Homepage {
+//       _id
+//       title
+//     }
+//     ... on ModularPage {
+//       _id
+//       title
+//     }
+//   }
+// `;
 
 export const GET_ROUTES = gql`
   ${DocumentRoutingFragmentDoc}
   query getRoutes {
     allDocument(
-      where: { _type: { in: ["blogArticle", "homepage", "blogHomepage"] } }
+      where: {
+        _type: {
+          in: ["blogArticle", "homepage", "blogHomepage", "modularPage"]
+        }
+      }
     ) {
       ...DocumentRouting
     }
@@ -215,11 +218,9 @@ export const getRoutingMapBySlug = (
 
         const listingCounter = blogArticles.length;
 
-        const numberOfPages =
-          Math.ceil(
-            (listingCounter - BLOG_ARTICLES_PER_PAGE_INDEX) /
-              BLOG_ARTICLES_PER_PAGE
-          ) + 1;
+        const numberOfPages = Math.ceil(
+          listingCounter / BLOG_ARTICLES_PER_PAGE
+        );
 
         // count articles and generate pages
         for (let pageIndex = 1; pageIndex <= numberOfPages; pageIndex++) {

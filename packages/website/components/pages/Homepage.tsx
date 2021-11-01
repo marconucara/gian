@@ -12,6 +12,7 @@ import {
 import { RoutingConfig } from "../../lib/routing";
 import { BlockContent } from "../BlockContent";
 import { HomepageServices } from "../HomepageServices";
+import { SanityPostListing } from "../sanity/SanityPostListing";
 import { SanitySections } from "../sanity/SanitySections";
 import { SanitySeo } from "../sanity/SanitySeo";
 
@@ -253,38 +254,26 @@ export const Homepage: React.FC<HomepageProps> = ({
         <div className="container mx-auto px-4">
           <div className="flex flex-wrap justify-center text-center mb-8">
             <div className="w-full lg:w-6/12 px-4">
-              <h2 className="text-4xl font-semibold">Ultimi articoli</h2>
-              <p className="text-lg leading-relaxed m-4 text-gray-600">
+              <h2 className="text-4xl font-semibold">
+                Ultimi articoli del blog
+              </h2>
+              {/* <p className="text-lg leading-relaxed m-4 text-gray-600">
                 Occaecat ad cupidatat eiusmod proident. Nostrud velit occaecat
                 mollit fugiat consequat eu reprehenderit culpa sunt. Aute
                 occaecat laborum aliqua adipisicing do voluptate id.
-              </p>
+              </p> */}
             </div>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 xl:gap-16">
-            {new Array(4).fill("").map((el) => (
-              <a className="shadow rounded overflow-hidden">
-                <Image
-                  alt="Gianluca Santabrogio"
-                  src="/profile.png"
-                  width="500"
-                  height="360"
-                  layout="responsive"
-                  className="shadow-lg w-full mx-auto"
-                  // style={{ maxWidth: "150px" }}
-                />
-                <div className="px-6 py-4">
-                  <h5 className="text-xl font-bold">Lorem ipsum</h5>
-                  <p className="mt-1 text-sm text-gray-500 uppercase font-semibold">
-                    Lorem ipsum
-                  </p>
-                  <div className="mt-6 text-gray-500">
-                    <i className="fa fa-clock mr-2" />
-                    Tempo di lettura 4 min
-                  </div>
-                </div>
-              </a>
-            ))}
+          <SanityPostListing limit={4} />
+          <div className="text-center mt-6">
+            <a
+              href="/blog"
+              className="bg-gray-900 text-white active:bg-gray-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
+              type="button"
+              style={{ transition: "all .15s ease" }}
+            >
+              Vedi tutti
+            </a>
           </div>
         </div>
       </section>
@@ -365,9 +354,9 @@ export const Homepage: React.FC<HomepageProps> = ({
                 <div className="flex-auto p-5 lg:p-10">
                   {/* <h4 className="text-2xl font-semibold">Contattami</h4> */}
                   <p className="leading-relaxed mt-1 mb-4 text-gray-600">
-                    Compila il modulo a lato per fissare un appuntamento e
-                    spiegami in breve la tua problematica, ti risponderò via
-                    Whats app non appena leggerò il tuo messaggio.
+                    Compila il modulo per fissare un appuntamento e spiegami in
+                    breve la tua problematica, ti risponderò via Whatsapp non
+                    appena leggerò il tuo messaggio.
                   </p>
                   <div className="relative w-full mb-3 mt-8">
                     <label

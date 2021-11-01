@@ -2,23 +2,23 @@ import { gql } from "@apollo/client";
 import React from "react";
 
 import {
-  // HeroFragmentDoc,
+  HeroFragmentDoc,
   SectionFragmentDoc,
   SectionsFragment,
 } from "../../generated/graphql";
 import { BreadcrumbsProps, PaginationProps } from "../../lib/routing";
-// import { SanityHero } from "./SanityHero";
+import { SanityHero } from "./SanityHero";
 import { SanitySection } from "./SanitySection";
 
 gql`
   ${SectionFragmentDoc}
-  fragment Sections on Section {
+  fragment Sections on HeroOrSection {
     ... on Section {
       ...Section
     }
-    # ... on Hero {
-    #   ...Hero
-    # }
+    ... on Hero {
+      ...Hero
+    }
   }
 `;
 
@@ -55,7 +55,7 @@ export const SanitySections: React.FC<Props> = ({
               }
             />
           )}
-          {/* {section?.__typename === 'Hero' && <SanityHero component={section} />} */}
+          {section?.__typename === "Hero" && <SanityHero component={section} />}
         </React.Fragment>
       ))}
     </>

@@ -42,4 +42,7 @@ export const section: ObjectType = {
   },
 };
 
-export const allSectionTypes = [{ type: "section", name: "section" }];
+export const allSectionTypes = [
+  { type: "section", name: "section" },
+  { type: "hero", name: "hero" },
+];

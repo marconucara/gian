@@ -4,17 +4,28 @@
       "Block",
       "SeoImage"
     ],
+    "BlogArticleOrBlogHomepageOrHomepageOrModularPage": [
+      "BlogArticle",
+      "BlogHomepage",
+      "Homepage",
+      "ModularPage"
+    ],
     "Document": [
       "BlogArticle",
       "BlogAuthor",
       "BlogHomepage",
       "Homepage",
+      "ModularPage",
       "SanityFileAsset",
       "SanityImageAsset"
     ],
     "EditorialTextOrPostListing": [
       "EditorialText",
       "PostListing"
+    ],
+    "HeroOrSection": [
+      "Hero",
+      "Section"
     ]
   }
 }

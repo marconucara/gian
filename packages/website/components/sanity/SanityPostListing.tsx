@@ -13,12 +13,12 @@ import { getReadingTime } from "../../lib/blog";
 import { formatISODate } from "../../lib/date";
 import {
   BLOG_ARTICLES_PER_PAGE,
-  BLOG_ARTICLES_PER_PAGE_INDEX,
   createSlugFromArray,
   getDocumentSlugById,
   PaginationProps,
   useSanityRouting,
 } from "../../lib/routing";
+import { Pagination } from "../Pagination";
 import { SanityImage } from "./SanityImage";
 
 gql`
@@ -52,19 +52,15 @@ gql`
 `;
 
 type Props = {
-  pagination: PaginationProps;
+  pagination?: PaginationProps;
+  limit?: number;
 };
 
 export const SanityPostListing: React.FC<Props> = ({
-  pagination: { pageIndex, pageCounter, baseSlugArray },
+  pagination,
+  limit = BLOG_ARTICLES_PER_PAGE,
 }) => {
-  const limit =
-    pageIndex === 1 ? BLOG_ARTICLES_PER_PAGE_INDEX - 1 : BLOG_ARTICLES_PER_PAGE;
-  const offset =
-    pageIndex === 1
-      ? 1
-      : (pageIndex - 2) * BLOG_ARTICLES_PER_PAGE +
-        1 * BLOG_ARTICLES_PER_PAGE_INDEX;
+  const offset = ((pagination?.pageIndex || 1) - 1) * limit;
 
   const router = useRouter();
 
@@ -81,59 +77,76 @@ export const SanityPostListing: React.FC<Props> = ({
 
   return (
     <>
-      {data?.listing.map((article, articleIndex) => {
-        const slug = getDocumentSlugById({ routingMapById, id: article._id });
+      {data?.listing && (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 xl:gap-16">
+          {data?.listing.map((article, articleIndex) => {
+            const slug = getDocumentSlugById({
+              routingMapById,
+              id: article._id,
+            });
 
-        return (
-          <div
-            onClick={() => router.push(slug)}
-            key={article._id}
-            reverse={articleIndex % 3 === 1}
-            title={
-              <Link href={slug}>
-                <a>{article.title || ""}</a>
-              </Link>
-            }
-            authorNamePrefix={
-              article?.modifiedDate ? "Aggiornato da" : "Pubblicato da"
-            }
-            authorName={`${article?.author?.firstname} ${article?.author?.lastname}`}
-            datePrefix="il"
-            date={formatISODate(
-              article?.modifiedDate || article?.publishDate || ""
-            )}
-            readingTime={`${getReadingTime(article?.contentRaw)} minuti`}
-            image={
-              article?.cover && (
-                <SanityImage asset={article?.cover} layout="fill" />
-              )
-            }
-          >
-            {article.subtitle}
-          </div>
-        );
-      })}
-
-      {/* <StyledPagination
-        currentPage={pageIndex}
-        numberOfPages={pageCounter}
-        renderLink={({ page: renderPageIndex, children }) => (
-          <>
-            {renderPageIndex !== pageIndex ? (
-              <Link
-                href={`${createSlugFromArray(baseSlugArray)}${
-                  renderPageIndex !== 1 ? `/page-${renderPageIndex}` : ""
-                }`}
-                key={renderPageIndex}
+            return (
+              <div
+                onClick={() => router.push(slug)}
+                className="shadow rounded overflow-hidden"
+                style={{ cursor: "pointer" }}
+                key={article._id}
               >
-                <a aria-label={`Vai a pagina ${renderPageIndex}`}>{children}</a>
-              </Link>
-            ) : (
-              renderPageIndex
-            )}
-          </>
-        )}
-      /> */}
+                <div
+                  className="shadow-lg w-full mx-auto relative"
+                  style={{ paddingBottom: "60%" }}
+                >
+                  {article?.cover && (
+                    <SanityImage asset={article?.cover} layout="fill" />
+                  )}
+                </div>
+                <div className="px-6 py-4">
+                  <Link href={slug}>
+                    <a className="text-xl font-bold">{article.title || ""}</a>
+                  </Link>
+                  <p className="mt-1 text-sm text-gray-500 uppercase font-semibold">
+                    {article.subtitle}
+                  </p>
+                  <div className="mt-6 text-gray-500">
+                    <i className="fa fa-clock mr-2" />
+                    Tempo di lettura {getReadingTime(article?.contentRaw)} min
+                  </div>
+                </div>
+              </div>
+
+              //   authorName={`${article?.author?.firstname} ${article?.author?.lastname}`}
+              //   date={formatISODate(
+              //     article?.modifiedDate || article?.publishDate || ""
+              //   )}
+            );
+          })}
+        </div>
+      )}
+
+      {pagination && (
+        <Pagination
+          currentPage={pagination.pageIndex}
+          numberOfPages={pagination.pageCounter}
+          renderLink={({ page: renderPageIndex, children }) => (
+            <>
+              {renderPageIndex !== pagination.pageIndex ? (
+                <Link
+                  href={`${createSlugFromArray(pagination.baseSlugArray)}${
+                    renderPageIndex !== 1 ? `/page-${renderPageIndex}` : ""
+                  }`}
+                  key={renderPageIndex}
+                >
+                  <a aria-label={`Vai a pagina ${renderPageIndex}`}>
+                    {children}
+                  </a>
+                </Link>
+              ) : (
+                renderPageIndex
+              )}
+            </>
+          )}
+        />
+      )}
     </>
   );
 };

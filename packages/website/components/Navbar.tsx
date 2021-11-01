@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 
 export default function Navbar(props: { transparent: any }) {
   const [navbarOpen, setNavbarOpen] = React.useState(false);
@@ -14,15 +15,16 @@ export default function Navbar(props: { transparent: any }) {
       >
         <div className="container px-4 mx-auto flex flex-wrap items-center justify-between">
           <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
-            <a
-              className={
-                (props.transparent ? "text-white" : "text-gray-800") +
-                " text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase"
-              }
-              href="https://www.creative-tim.com/learning-lab/tailwind-starter-kit#/presentation"
-            >
-              Dr. Gianluca Santambrogio
-            </a>
+            <Link href="/">
+              <a
+                className={
+                  (props.transparent ? "text-white" : "text-gray-800") +
+                  " text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase"
+                }
+              >
+                Dr. Gianluca Santambrogio
+              </a>
+            </Link>
             <button
               className="cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none"
               type="button"
@@ -45,25 +47,26 @@ export default function Navbar(props: { transparent: any }) {
           >
             <ul className="flex flex-col lg:flex-row list-none mr-auto">
               <li className="flex items-center">
-                <a
-                  className={
-                    (props.transparent
-                      ? "lg:text-white lg:hover:text-gray-300 text-gray-800"
-                      : "text-gray-800 hover:text-gray-600") +
-                    " px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
-                  }
-                  href="https://www.creative-tim.com/learning-lab/tailwind-starter-kit#/profile"
-                >
-                  <i
+                <Link href="/blog">
+                  <a
                     className={
                       (props.transparent
-                        ? "lg:text-gray-300 text-gray-500"
-                        : "text-gray-500") +
-                      " far fa-file-alt text-lg leading-lg mr-2"
+                        ? "lg:text-white lg:hover:text-gray-300 text-gray-800"
+                        : "text-gray-800 hover:text-gray-600") +
+                      " px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
                     }
-                  />{" "}
-                  Il mio blog
-                </a>
+                  >
+                    <i
+                      className={
+                        (props.transparent
+                          ? "lg:text-gray-300 text-gray-500"
+                          : "text-gray-500") +
+                        " far fa-file-alt text-lg leading-lg mr-2"
+                      }
+                    />{" "}
+                    Il mio blog
+                  </a>
+                </Link>
               </li>
             </ul>
             <ul className="flex flex-col lg:flex-row list-none lg:ml-auto">
@@ -75,7 +78,8 @@ export default function Navbar(props: { transparent: any }) {
                       : "text-gray-800 hover:text-gray-600") +
                     " px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
                   }
-                  href="#pablo"
+                  href="https://www.facebook.com/dr.gianlucasantambrogio"
+                  target="_blank"
                 >
                   <i
                     className={
@@ -85,7 +89,7 @@ export default function Navbar(props: { transparent: any }) {
                       " fab fa-facebook text-lg leading-lg "
                     }
                   />
-                  <span className="lg:hidden inline-block ml-2">Share</span>
+                  <span className="lg:hidden inline-block ml-2">Facebook</span>
                 </a>
               </li>
 
@@ -97,29 +101,8 @@ export default function Navbar(props: { transparent: any }) {
                       : "text-gray-800 hover:text-gray-600") +
                     " px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
                   }
-                  href="#pablo"
-                >
-                  <i
-                    className={
-                      (props.transparent
-                        ? "lg:text-gray-300 text-gray-500"
-                        : "text-gray-500") +
-                      " fab fa-twitter text-lg leading-lg "
-                    }
-                  />
-                  <span className="lg:hidden inline-block ml-2">Tweet</span>
-                </a>
-              </li>
-
-              <li className="flex items-center">
-                <a
-                  className={
-                    (props.transparent
-                      ? "lg:text-white lg:hover:text-gray-300 text-gray-800"
-                      : "text-gray-800 hover:text-gray-600") +
-                    " px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
-                  }
-                  href="#pablo"
+                  href="https://www.instagram.com/dr.gianlucasantambrogio"
+                  target="_blank"
                 >
                   <i
                     className={
@@ -129,18 +112,18 @@ export default function Navbar(props: { transparent: any }) {
                       " fab fa-instagram text-lg leading-lg "
                     }
                   />
-                  <span className="lg:hidden inline-block ml-2">Star</span>
+                  <span className="lg:hidden inline-block ml-2">Instagram</span>
                 </a>
               </li>
 
-              <li className="flex items-center">
+              {/* <li className="flex items-center">
                 <a
                   className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
                   href="#pablo"
                 >
                   Altro?
                 </a>
-              </li>
+              </li> */}
             </ul>
           </div>
         </div>

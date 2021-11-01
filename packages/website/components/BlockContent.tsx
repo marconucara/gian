@@ -136,7 +136,7 @@ const getSerializers = ({
     },
     centered({ children }) {
       // return <Text align="center">{children}</Text>;
-      return <>{children}</>;
+      return <div className="text-center">{children}</div>;
     },
     internalLink({ mark: { document, asButton }, children }) {
       // eslint-disable-next-line react-hooks/rules-of-hooks

@@ -14,10 +14,10 @@ import { getReadingTime } from "../../lib/blog";
 import { formatISODate } from "../../lib/date";
 import { BASE_URL, RoutingConfig } from "../../lib/routing";
 import { BlockContent, Component, headingSerializers } from "../BlockContent";
-// import { Breadcrumbs } from "../Breadcrumbs";
+import { Breadcrumbs } from "../Breadcrumbs";
 
 import { SanityImage } from "../sanity/SanityImage";
-// import { SectionContainer } from "../sanity/SanitySection";
+
 import { SanitySeo } from "../sanity/SanitySeo";
 
 // this query could be done with this:
@@ -237,7 +237,9 @@ export const BlogArticle: React.FC<BlogArticleProps> = ({
                       Tempo di lettura {getReadingTime(page?.contentRaw)} min.
                     </div>
                   </div>
+
                   <div className="w-full lg:w-9/12 px-4 mt-10 py-10 border-t border-gray-300 text-lg text-gray-800">
+                    <Breadcrumbs breadcrumbs={breadcrumbs} />
                     <BlockContent
                       blocks={page?.contentRaw}
                       headingRenderers={[

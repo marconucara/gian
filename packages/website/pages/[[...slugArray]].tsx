@@ -9,7 +9,7 @@ import { Layout } from "../components/Layout";
 import { BlogArticle } from "../components/pages/BlogArticle";
 import { BlogHomepage } from "../components/pages/BlogHomepage";
 import { Homepage } from "../components/pages/Homepage";
-// import { ModularPage } from "../components/pages/ModularPage";
+import { ModularPage } from "../components/pages/ModularPage";
 import { initializeApollo } from "../lib/apolloClient";
 import {
   createSlugFromArray,
@@ -41,9 +41,9 @@ const SanityRouter: React.FC<Props> = ({ slugArray = [""] }) => {
 
   return (
     <>
-      {/* {routingMapBySlug[slug]?.typename === "ModularPage" && (
+      {routingConfig?.typename === "ModularPage" && (
         <ModularPage routingConfig={routingConfig} />
-      )} */}
+      )}
       {routingConfig?.typename === "Homepage" && (
         <Homepage routingConfig={routingConfig} />
       )}
@@ -67,7 +67,7 @@ export async function getStaticPaths(): Promise<GetStaticPathsResult> {
     query: GET_ROUTES,
   });
 
-  console.log("DEBUG ALL DOCUMENT", data?.allDocument);
+  // console.log("DEBUG ALL DOCUMENT", JSON.stringify(data?.allDocument));
 
   const routingMapBySlug = getRoutingMapBySlug(data?.allDocument);
 

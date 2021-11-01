@@ -5,7 +5,7 @@ import {
   SanitySeoFragmentDoc,
   SectionsFragment,
   SectionsFragmentDoc,
-  useGetBlogHomepageQuery,
+  useGetModularPageQuery,
 } from "../../generated/graphql";
 import { RoutingConfig } from "../../lib/routing";
 import { SanitySections } from "../sanity/SanitySections";
@@ -17,8 +17,8 @@ import { SanitySeo } from "../sanity/SanitySeo";
 gql`
   ${SanitySeoFragmentDoc}
   ${SectionsFragmentDoc}
-  query getBlogHomepage($id: ID!) {
-    page: allBlogHomepage(
+  query getModularPage($id: ID!) {
+    page: allModularPage(
       where: { _id: { matches: $id } }
       sort: { _updatedAt: DESC }
       limit: 1
@@ -35,14 +35,14 @@ gql`
   }
 `;
 
-type BlogHomepageProps = {
+type ModularPageProps = {
   routingConfig: RoutingConfig;
 };
 
-export const BlogHomepage: React.FC<BlogHomepageProps> = ({
+export const ModularPage: React.FC<ModularPageProps> = ({
   routingConfig: { id, slug, pagination, breadcrumbs },
 }) => {
-  const { loading, error, data } = useGetBlogHomepageQuery({
+  const { loading, error, data } = useGetModularPageQuery({
     variables: {
       id,
     },

@@ -20,7 +20,12 @@ export const internalLink: ObjectType = {
       name: "document",
       title: "Document",
       type: "reference",
-      to: [{ type: "blogArticle" }],
+      to: [
+        { type: "blogArticle" },
+        { type: "blogHomepage" },
+        { type: "modularPage" },
+        { type: "homepage" },
+      ],
     },
     {
       name: "anchor",
