@@ -1,6 +1,7 @@
 import { gql } from "@apollo/client";
+import { stringifyForDisplay } from "@apollo/client/utilities";
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 
 import {
   SanityImageFragmentDoc,
@@ -53,6 +54,8 @@ type HomepageProps = {
 export const Homepage: React.FC<HomepageProps> = ({
   routingConfig: { id, slug, breadcrumbs },
 }) => {
+  const [formStatus, setFormStatus] = useState<boolean>(false);
+
   const { loading, error, data } = useGetHomepageQuery({
     variables: {
       id,
@@ -352,116 +355,150 @@ export const Homepage: React.FC<HomepageProps> = ({
                 </p>
               </div>
             </div> */}
+          <form
+            onSubmit={async (e) => {
+              e.preventDefault();
 
-          <div className="flex flex-wrap justify-center">
-            <div className="w-full lg:w-6/12 px-4">
-              <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-gray-200">
-                <div className="flex-auto p-5 lg:p-10">
-                  {/* <h4 className="text-2xl font-semibold">Contattami</h4> */}
-                  <p className="leading-relaxed mt-1 mb-4 text-gray-600">
-                    Compila il modulo per fissare un appuntamento e spiegami in
-                    breve la tua problematica, ti risponderò via Whatsapp non
-                    appena leggerò il tuo messaggio.
-                  </p>
-                  <div className="relative w-full mb-3 mt-8">
-                    <label
-                      className="block uppercase text-gray-700 text-xs font-bold mb-2"
-                      htmlFor="full-name"
-                    >
-                      Tipologia di richiesta
-                    </label>
-                    <select
-                      className="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
-                      style={{ transition: "all .15s ease" }}
-                    >
-                      <option value=""></option>
-                      <option value="Trattamento massoterapico">
-                        Trattamento massoterapico
-                      </option>
-                      <option value="Scheda di allenamento">
-                        Scheda di allenamento
-                      </option>
-                      <option value="Personal training">
-                        Personal training
-                      </option>
-                      <option value="Altro / non sono sicuro">
-                        Altro / non sono sicuro
-                      </option>
-                    </select>
-                  </div>
+              const formData: Record<string, string> = {};
 
-                  <div className="relative w-full mb-3 mt-8">
-                    <label
-                      className="block uppercase text-gray-700 text-xs font-bold mb-2"
-                      htmlFor="full-name"
-                    >
-                      Nome e cognome
-                    </label>
-                    <input
-                      type="text"
-                      className="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
-                      placeholder="Nome e cognome"
-                      style={{ transition: "all .15s ease" }}
-                    />
-                  </div>
+              Array.from(e.currentTarget.elements).forEach((field: any) => {
+                if (!field.name) return;
+                formData[field.name] = field.value;
+              });
 
-                  <div className="relative w-full mb-3">
-                    <label
-                      className="block uppercase text-gray-700 text-xs font-bold mb-2"
-                      htmlFor="email"
-                    >
-                      Email
-                    </label>
-                    <input
-                      type="email"
-                      className="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
-                      placeholder="Email"
-                      style={{ transition: "all .15s ease" }}
-                    />
-                  </div>
+              await fetch("/api/mail", {
+                method: "POST",
+                body: JSON.stringify(formData),
+              });
 
-                  <div className="relative w-full mb-3">
-                    <label
-                      className="block uppercase text-gray-700 text-xs font-bold mb-2"
-                      htmlFor="email"
-                    >
-                      Numero di telefono
-                    </label>
-                    <input
-                      type="phone"
-                      className="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
-                      placeholder="Numero di telefono"
-                      style={{ transition: "all .15s ease" }}
-                    />
-                  </div>
+              setFormStatus(true);
+            }}
+          >
+            <div className="flex flex-wrap justify-center">
+              <div className="w-full lg:w-6/12 px-4">
+                <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-gray-200">
+                  <div className="flex-auto p-5 lg:p-10">
+                    {/* <h4 className="text-2xl font-semibold">Contattami</h4> */}
+                    <p className="leading-relaxed mt-1 mb-4 text-gray-600">
+                      Compila il modulo per fissare un appuntamento e spiegami
+                      in breve la tua problematica, ti risponderò via Whatsapp
+                      non appena leggerò il tuo messaggio.
+                    </p>
 
-                  <div className="relative w-full mb-3">
-                    <label
-                      className="block uppercase text-gray-700 text-xs font-bold mb-2"
-                      htmlFor="message"
-                    >
-                      La tua richiesta
-                    </label>
-                    <textarea
-                      rows={4}
-                      cols={80}
-                      className="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
-                      placeholder="Scrivi qui..."
-                    />
-                  </div>
-                  <div className="text-center mt-6">
-                    <button
-                      className="bg-gray-900 text-white active:bg-gray-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
-                      type="button"
-                      style={{ transition: "all .15s ease" }}
-                    >
-                      Invia
-                    </button>
+                    {formStatus === false || formStatus === true ? (
+                      <>
+                        <div className="relative w-full mb-3 mt-8">
+                          <label
+                            className="block uppercase text-gray-700 text-xs font-bold mb-2"
+                            htmlFor="full-name"
+                          >
+                            Tipologia di richiesta
+                          </label>
+                          <select
+                            className="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
+                            style={{ transition: "all .15s ease" }}
+                            name="topic"
+                          >
+                            <option value=""></option>
+                            <option value="Trattamento massoterapico">
+                              Trattamento massoterapico
+                            </option>
+                            <option value="Scheda di allenamento">
+                              Scheda di allenamento
+                            </option>
+                            <option value="Personal training">
+                              Personal training
+                            </option>
+                            <option value="Altro / non sono sicuro">
+                              Altro / non sono sicuro
+                            </option>
+                          </select>
+                        </div>
+
+                        <div className="relative w-full mb-3 mt-8">
+                          <label
+                            className="block uppercase text-gray-700 text-xs font-bold mb-2"
+                            htmlFor="full-name"
+                          >
+                            Nome e cognome
+                          </label>
+                          <input
+                            type="text"
+                            className="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
+                            placeholder="Nome e cognome"
+                            name="name"
+                            style={{ transition: "all .15s ease" }}
+                          />
+                        </div>
+
+                        <div className="relative w-full mb-3">
+                          <label
+                            className="block uppercase text-gray-700 text-xs font-bold mb-2"
+                            htmlFor="email"
+                          >
+                            Email
+                          </label>
+                          <input
+                            type="email"
+                            className="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
+                            placeholder="Email"
+                            name="email"
+                            style={{ transition: "all .15s ease" }}
+                          />
+                        </div>
+
+                        <div className="relative w-full mb-3">
+                          <label
+                            className="block uppercase text-gray-700 text-xs font-bold mb-2"
+                            htmlFor="email"
+                          >
+                            Numero di telefono
+                          </label>
+                          <input
+                            type="phone"
+                            name="phone"
+                            className="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
+                            placeholder="Numero di telefono"
+                            style={{ transition: "all .15s ease" }}
+                          />
+                        </div>
+
+                        <div className="relative w-full mb-3">
+                          <label
+                            className="block uppercase text-gray-700 text-xs font-bold mb-2"
+                            htmlFor="message"
+                          >
+                            La tua richiesta
+                          </label>
+                          <textarea
+                            rows={4}
+                            cols={80}
+                            name="message"
+                            className="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
+                            placeholder="Scrivi qui..."
+                          />
+                        </div>
+                        <div className="text-center mt-6">
+                          <button
+                            className="bg-gray-900 text-white active:bg-gray-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
+                            type="submit"
+                            style={{ transition: "all .15s ease" }}
+                          >
+                            Invia
+                          </button>
+                        </div>
+                      </>
+                    ) : (
+                      <p className="leading-relaxed mt-1 mb-4 text-gray-600">
+                        Richiesta inviata con successo. Ti risponderò il prima
+                        possibile, grazie!
+                      </p>
+                    )}
                   </div>
                 </div>
               </div>
             </div>
-          </div>
+          </form>
         </div>
       </section>
     </>
