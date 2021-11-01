@@ -368,6 +368,7 @@ export type Homepage = Document & {
   seo?: Maybe<Seo>;
   title?: Maybe<Scalars['String']>;
   cover?: Maybe<SeoImage>;
+  profile?: Maybe<SeoImage>;
   introRaw?: Maybe<Scalars['JSON']>;
 };
 
@@ -383,6 +384,7 @@ export type HomepageFilter = {
   seo?: Maybe<SeoFilter>;
   title?: Maybe<StringFilter>;
   cover?: Maybe<SeoImageFilter>;
+  profile?: Maybe<SeoImageFilter>;
 };
 
 export type HomepageSorting = {
@@ -395,6 +397,7 @@ export type HomepageSorting = {
   seo?: Maybe<SeoSorting>;
   title?: Maybe<SortOrder>;
   cover?: Maybe<SeoImageSorting>;
+  profile?: Maybe<SeoImageSorting>;
 };
 
 export type IdFilter = {
@@ -1263,6 +1266,9 @@ export type GetHomepageQuery = (
     )>, cover?: Maybe<(
       { __typename?: 'SeoImage' }
       & SanityImageFragment
+    )>, profile?: Maybe<(
+      { __typename?: 'SeoImage' }
+      & SanityImageFragment
     )> }
   )> }
 );
@@ -1757,6 +1763,9 @@ export const GetHomepageDocument = gql`
     }
     title
     cover {
+      ...SanityImage
+    }
+    profile {
       ...SanityImage
     }
     introRaw

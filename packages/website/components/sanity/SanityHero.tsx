@@ -1,7 +1,7 @@
 import { gql } from "@apollo/client";
 import React from "react";
 
-import { HeroFragment } from "../../../generated/graphql";
+import { HeroFragment } from "../../generated/graphql";
 import { BlockContent } from "../BlockContent";
 import { SanityEditorialText } from "./SanityEditorialText";
 import { SanityImage } from "./SanityImage";

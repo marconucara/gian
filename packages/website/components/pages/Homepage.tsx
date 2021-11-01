@@ -12,6 +12,7 @@ import {
 import { RoutingConfig } from "../../lib/routing";
 import { BlockContent } from "../BlockContent";
 import { HomepageServices } from "../HomepageServices";
+import { SanityImage } from "../sanity/SanityImage";
 import { SanityPostListing } from "../sanity/SanityPostListing";
 import { SanitySections } from "../sanity/SanitySections";
 import { SanitySeo } from "../sanity/SanitySeo";
@@ -35,6 +36,9 @@ gql`
       }
       title
       cover {
+        ...SanityImage
+      }
+      profile {
         ...SanityImage
       }
       introRaw
@@ -101,14 +105,15 @@ export const Homepage: React.FC<HomepageProps> = ({
               <div className="flex flex-wrap justify-center">
                 <div className="w-full lg:w-3/12 px-4 lg:order-2 flex justify-center">
                   <div className="relative -m-16">
-                    <Image
-                      alt="Gianluca Santabrogio"
-                      src="/profile.png"
-                      width="150"
-                      height="200"
-                      className="shadow-xl rounded-full h-auto align-middle border-none absolute  -ml-20 lg:-ml-16"
-                      // style={{ maxWidth: "150px" }}
-                    />
+                    {page?.profile && (
+                      <SanityImage
+                        asset={page?.profile}
+                        layout="fixed"
+                        width="150"
+                        height="200"
+                        className="shadow-xl rounded-full h-auto align-middle border-none absolute  -ml-20 lg:-ml-16"
+                      />
+                    )}
                   </div>
                 </div>
                 {/* <div className="w-full lg:w-4/12 px-4 lg:order-3 lg:text-right lg:self-center">

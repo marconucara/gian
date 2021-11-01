@@ -28,6 +28,13 @@ export const homepage = {
         Rule.required(),
     },
     {
+      name: "profile",
+      title: "Profile photo",
+      type: "seoImage",
+      validation: (Rule: { required: () => boolean }): boolean =>
+        Rule.required(),
+    },
+    {
       name: "intro",
       title: "Intro",
       type: "blockContent",

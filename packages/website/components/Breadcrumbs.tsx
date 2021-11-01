@@ -46,7 +46,7 @@ export const Breadcrumbs: React.FC<Props> = ({ breadcrumbs = [] }) => {
         "
         role="alert"
       >
-        <ol class="list-reset flex text-grey-dark">
+        <ol className="list-reset flex text-grey-dark">
           {breadcrumbs.map(({ slug, title }) =>
             slug ? (
               <li>
