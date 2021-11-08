@@ -1,7 +1,6 @@
 import { gql } from "@apollo/client";
-import { stringifyForDisplay } from "@apollo/client/utilities";
-import Image from "next/image";
 import React, { useState } from "react";
+import Link from "next/link";
 
 import {
   SanityImageFragmentDoc,
@@ -107,14 +106,14 @@ export const Homepage: React.FC<HomepageProps> = ({
             <div className="px-6">
               <div className="flex flex-wrap justify-center">
                 <div className="w-full lg:w-3/12 px-4 lg:order-2 flex justify-center">
-                  <div className="relative -m-16">
+                  <div className="relative -m-12">
                     {page?.profile && (
                       <SanityImage
                         asset={page?.profile}
                         layout="fixed"
                         width="150"
                         height="200"
-                        className="shadow-xl rounded-full h-auto align-middle border-none absolute  -ml-20 lg:-ml-16"
+                        className="shadow-xl rounded-full h-auto align-middle border-none absolute overflow-hidden -ml-20 lg:-ml-16"
                       />
                     )}
                   </div>
@@ -174,17 +173,18 @@ export const Homepage: React.FC<HomepageProps> = ({
               </div>
               <div className="mt-10 py-10 border-t border-gray-300">
                 <div className="flex flex-wrap justify-center">
-                  <div className="w-full lg:w-9/12 px-4">
-                    <div className="mb-4 text-lg leading-relaxed text-gray-800">
+                  <div className="w-full lg:w-9/12 px-4 text-center">
+                    {/* <div className="mb-4 text-lg leading-relaxed text-gray-800">
                       <BlockContent blocks={page?.introRaw} />
-                    </div>
-                    {/* <a
-                        href="#pablo"
-                        className="font-normal text-blue-500"
-                        onClick={(e) => e.preventDefault()}
+                    </div> */}
+                    <Link href="/#contattami">
+                      <a
+                        className="bg-gray-900 text-white active:bg-gray-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
+                        type="button"
                       >
-                        Show more
-                      </a> */}
+                        Contattami
+                      </a>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -310,7 +310,9 @@ export const Homepage: React.FC<HomepageProps> = ({
         <div className="container mx-auto px-4 lg:pt-24 lg:pb-64">
           <div className="flex flex-wrap text-center justify-center">
             <div className="w-full lg:w-6/12 px-4 mb-8">
-              <h2 className="text-4xl font-semibold text-white">Contattami</h2>
+              <h2 className="text-4xl font-semibold text-white" id="contattami">
+                Contattami
+              </h2>
               {/* <p className="text-lg leading-relaxed mt-4 mb-4 text-gray-500">
                   Qua possiamo mettere qualcosa ma per ora non ho in mente
                   niente

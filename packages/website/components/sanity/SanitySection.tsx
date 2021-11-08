@@ -46,7 +46,7 @@ export const SanitySection: React.FC<Props> = ({
   return (
     // backgroundColor={(theme as ThemeColor) || undefined}
     <section className="pt-20 pb-48">
-      <div className="container mx-auto px-4">
+      <div className="container modular mx-auto px-4">
         {components?.map((component, componentIndex) => (
           <div
             className="mb-8"

@@ -54,44 +54,44 @@ export const Pagination: React.FC<Props> = ({
         </React.Fragment>
       ))} */}
       {pages.map((page, index) => {
-        const Comp = currentPage === page ? "span" : "a";
-        return (
-          <Comp
-            className={`
-            text-blue-500
-            bg-transparent
-            
+        const className = `
+          text-blue-500
+          bg-transparent
+          
 
-            ${index === 0 ? "border-l " : "border-l border-r"}
-            
-            border-t border-b
-            border-blue-500
+          ${index === 0 ? "border-l " : "border-l border-r"}
+          
+          border-t border-b
+          border-blue-500
 
-            ${
-              currentPage !== page
-                ? "hover:bg-blue-500 hover:text-white active:bg-blue-600"
-                : ""
-            }
-            
-            font-bold
-            uppercase
-            text-xs
-            px-4
-            py-2
-            ${index === 0 ? "rounded-l" : ""}
-            ${index === pages.length - 1 ? "rounded-r" : ""}
-            outline-none
-            focus:outline-none
-            mb-1
-            ease-linear
-            transition-all
-            duration-150
-            `}
-          >
-            {currentPage === page
-              ? page.toString()
-              : renderLink({ page, children: page.toString() })}
-          </Comp>
+          ${
+            currentPage !== page
+              ? "hover:bg-blue-500 hover:text-white active:bg-blue-600"
+              : "cursor-default"
+          }
+          
+          font-bold
+          uppercase
+          text-xs
+          px-4
+          py-2
+          ${index === 0 ? "rounded-l" : ""}
+          ${index === pages.length - 1 ? "rounded-r" : ""}
+          outline-none
+          focus:outline-none
+          mb-1
+          ease-linear
+          transition-all
+          duration-150
+        `;
+
+        return currentPage === page ? (
+          <span className={className}>{page.toString()}</span>
+        ) : (
+          renderLink({
+            page,
+            children: <a className={className}>{page.toString()}</a>,
+          })
         );
       })}
     </div>

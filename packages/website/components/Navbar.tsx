@@ -78,7 +78,7 @@ export default function Navbar(props: { transparent: any }) {
                       : "text-gray-800 hover:text-gray-600") +
                     " px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
                   }
-                  href="https://www.facebook.com/dr.gianlucasantambrogio"
+                  href="https://www.facebook.com/Gianluca-Santambrogio-109070334667486"
                   target="_blank"
                 >
                   <i
@@ -116,14 +116,16 @@ export default function Navbar(props: { transparent: any }) {
                 </a>
               </li>
 
-              {/* <li className="flex items-center">
-                <a
-                  className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
-                  href="#pablo"
-                >
-                  Altro?
-                </a>
-              </li> */}
+              <li className="flex items-center">
+                <Link href="/#contattami">
+                  <a
+                    className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
+                    href="#pablo"
+                  >
+                    Contattami
+                  </a>
+                </Link>
+              </li>
             </ul>
           </div>
         </div>

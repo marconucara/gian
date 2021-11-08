@@ -33,7 +33,7 @@ export default function Footer() {
               </h5>
               <div className="mt-6">
                 <a
-                  href="https://www.facebook.com/dr.gianlucasantambrogio"
+                  href="https://www.facebook.com/Gianluca-Santambrogio-109070334667486"
                   target="_blank"
                   className="bg-white text-blue-600 shadow-lg font-normal h-12 w-12 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2 p-3"
                 >
@@ -56,9 +56,9 @@ export default function Footer() {
                   </span>
                   <ul className="list-unstyled">
                     <li>
-                      <Link href="/su-di-me">
+                      <Link href="/chi-sono">
                         <a className="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm">
-                          Su di me
+                          Chi sono
                         </a>
                       </Link>
                     </li>

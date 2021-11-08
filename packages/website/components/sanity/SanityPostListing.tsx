@@ -88,7 +88,7 @@ export const SanityPostListing: React.FC<Props> = ({
             return (
               <div
                 onClick={() => router.push(slug)}
-                className="shadow rounded overflow-hidden"
+                className="flex flex-col items-stratch shadow rounded overflow-hidden"
                 style={{ cursor: "pointer" }}
                 key={article._id}
               >
@@ -100,17 +100,17 @@ export const SanityPostListing: React.FC<Props> = ({
                     <SanityImage asset={article?.cover} layout="fill" />
                   )}
                 </div>
-                <div className="px-6 py-4">
+                <div className="px-6 py-4 ">
                   <Link href={slug}>
-                    <a className="text-xl font-bold">{article.title || ""}</a>
+                    <a className="text-m font-bold">{article.title || ""}</a>
                   </Link>
-                  <p className="mt-1 text-sm text-gray-500 uppercase font-semibold">
+                  <p className="mt-1 text-sx text-gray-500 font-semibold mb-6">
                     {article.subtitle}
                   </p>
-                  <div className="mt-6 text-gray-500">
-                    <i className="fa fa-clock mr-2" />
-                    Tempo di lettura {getReadingTime(article?.contentRaw)} min
-                  </div>
+                </div>
+                <div className="px-6 py-4 text-sm text-gray-500 mt-auto">
+                  <i className="fa fa-clock mr-2" />
+                  Tempo di lettura {getReadingTime(article?.contentRaw)} min
                 </div>
               </div>
 
@@ -136,9 +136,7 @@ export const SanityPostListing: React.FC<Props> = ({
                   }`}
                   key={renderPageIndex}
                 >
-                  <a aria-label={`Vai a pagina ${renderPageIndex}`}>
-                    {children}
-                  </a>
+                  {children}
                 </Link>
               ) : (
                 renderPageIndex

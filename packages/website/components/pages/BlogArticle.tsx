@@ -116,7 +116,7 @@ export const BlogArticle: React.FC<BlogArticleProps> = ({
     },
     publisher: {
       "@type": "Organization",
-      name: "Amusi",
+      name: "Dr. Gianluca Santambrogio",
       logo: {
         "@type": "ImageObject",
         url: `${BASE_URL}/logo_amp.png`, // TODO: creare logo 600x60 px
