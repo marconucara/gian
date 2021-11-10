@@ -386,7 +386,6 @@ export const Homepage: React.FC<HomepageProps> = ({
                       in breve la tua problematica, ti risponderò via Whatsapp
                       non appena leggerò il tuo messaggio.
                     </p>
-
                     {formStatus === false ? (
                       <>
                         <div className="relative w-full mb-3 mt-8">
@@ -402,18 +401,17 @@ export const Homepage: React.FC<HomepageProps> = ({
                             name="topic"
                           >
                             <option value=""></option>
-                            <option value="Trattamento massoterapico">
+                            <option value="Trattamento massoterapico / osteopatico">
                               Trattamento massoterapico
                             </option>
-                            <option value="Scheda di allenamento">
-                              Scheda di allenamento
+                            <option value="Scheda di allenamento con misure massa magra /grassa">
+                              Scheda di allenamento con misure massa magra /
+                              grassa
                             </option>
                             <option value="Personal training">
                               Personal training
                             </option>
-                            <option value="Altro / non sono sicuro">
-                              Altro / non sono sicuro
-                            </option>
+                            <option value="Altro/info">Altro/info</option>
                           </select>
                         </div>
 
