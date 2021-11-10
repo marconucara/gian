@@ -19,8 +19,9 @@ export default async (req: NextApiRequest, res: NextApiResponse<Data>) => {
   `;
   try {
     await mail.send({
-      to: "marco.nucara@gmail.com",
+      to: "info@gianlucasantambrogio.com",
       from: "info@gianlucasantambrogio.com",
+      reply_to: body.email,
       subject: "Nuova richiesta dal sito!",
       text: message,
       html: message.replace(/\r\n/g, "<br>"),

@@ -1,7 +1,7 @@
-import S from '@sanity/desk-tool/structure-builder';
-import React from 'react';
+import S from "@sanity/desk-tool/structure-builder";
+import React from "react";
 
-import resolveDocumentUrl from '../resolveDocumentUrl';
+import resolveDocumentUrl from "../resolveDocumentUrl";
 
 const WebPreview: React.FC<{
   document: { displayed: { _id: string } };
@@ -9,7 +9,7 @@ const WebPreview: React.FC<{
   return (
     <iframe
       allowFullScreen
-      style={{ width: '100%', height: '100%' }}
+      style={{ width: "100%", height: "100%" }}
       title="web"
       src={resolveDocumentUrl(document.displayed)}
       frameBorder={0}
@@ -19,10 +19,10 @@ const WebPreview: React.FC<{
 
 export const getDefaultDocumentNode = ({ schemaType }) => {
   // Conditionally return a different configuration based on the schema type
-  if (schemaType !== 'settings') {
+  if (schemaType !== "settings") {
     return S.document().views([
       S.view.form(),
-      S.view.component(WebPreview).title('Web'),
+      // S.view.component(WebPreview).title('Web'),
     ]);
   }
 };
