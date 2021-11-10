@@ -387,7 +387,7 @@ export const Homepage: React.FC<HomepageProps> = ({
                       non appena leggerò il tuo messaggio.
                     </p>
 
-                    {formStatus === false || formStatus === true ? (
+                    {formStatus === false ? (
                       <>
                         <div className="relative w-full mb-3 mt-8">
                           <label
