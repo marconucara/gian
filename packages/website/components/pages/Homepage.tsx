@@ -404,14 +404,14 @@ export const Homepage: React.FC<HomepageProps> = ({
                             <option value="Trattamento massoterapico / osteopatico">
                               Trattamento massoterapico
                             </option>
-                            <option value="Scheda di allenamento con misure massa magra /grassa">
+                            <option value="Scheda di allenamento con misure massa magra / grassa">
                               Scheda di allenamento con misure massa magra /
                               grassa
                             </option>
                             <option value="Personal training">
                               Personal training
                             </option>
-                            <option value="Altro/info">Altro/info</option>
+                            <option value="Altro / info">Altro / info</option>
                           </select>
                         </div>
 
