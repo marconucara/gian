@@ -115,13 +115,16 @@ export default function Navbar(props: { transparent: any }) {
                   <span className="lg:hidden inline-block ml-2">Instagram</span>
                 </a>
               </li>
-
+              <li className="flex items-center">
+                <Link href="/chi-sono">
+                  <a className="flex items-center text-xs uppercase font-bold leading-snug lg:text-white text-gray-800 px-3 py-4 lg:py-2 hover:opacity-75">
+                    Chi sono
+                  </a>
+                </Link>
+              </li>
               <li className="flex items-center">
                 <Link href="/#contattami">
-                  <a
-                    className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
-                    href="#pablo"
-                  >
+                  <a className="flex items-center text-xs uppercase font-bold leading-snug lg:text-white text-gray-800 px-3 py-4 lg:py-2 hover:opacity-75">
                     Contattami
                   </a>
                 </Link>

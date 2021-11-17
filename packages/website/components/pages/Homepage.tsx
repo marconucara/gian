@@ -5,16 +5,13 @@ import Link from "next/link";
 import {
   SanityImageFragmentDoc,
   SanitySeoFragmentDoc,
-  SectionsFragment,
   SectionsFragmentDoc,
   useGetHomepageQuery,
 } from "../../generated/graphql";
 import { RoutingConfig } from "../../lib/routing";
-import { BlockContent } from "../BlockContent";
 import { HomepageServices } from "../HomepageServices";
 import { SanityImage } from "../sanity/SanityImage";
 import { SanityPostListing } from "../sanity/SanityPostListing";
-import { SanitySections } from "../sanity/SanitySections";
 import { SanitySeo } from "../sanity/SanitySeo";
 
 // this query could be done with this:
