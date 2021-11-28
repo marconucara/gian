@@ -175,10 +175,7 @@ export const Homepage: React.FC<HomepageProps> = ({
                       <BlockContent blocks={page?.introRaw} />
                     </div> */}
                     <Link href="/#contattami">
-                      <a
-                        className="bg-gray-900 text-white active:bg-gray-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
-                        type="button"
-                      >
+                      <a className="bg-gray-900 text-white active:bg-gray-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1">
                         Contattami
                       </a>
                     </Link>
@@ -274,7 +271,6 @@ export const Homepage: React.FC<HomepageProps> = ({
             <a
               href="/blog"
               className="bg-gray-900 text-white active:bg-gray-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
-              type="button"
               style={{ transition: "all .15s ease" }}
             >
               Vedi tutti

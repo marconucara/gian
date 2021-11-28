@@ -33,7 +33,12 @@ class MyDocument extends Document {
           />
           <meta name="msapplication-TileColor" content="#2563eb" />
           <meta name="theme-color" content="#ffffff" />
-
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
+              dataLayer = [];`,
+            }}
+          />
           <script
             dangerouslySetInnerHTML={{
               __html: `

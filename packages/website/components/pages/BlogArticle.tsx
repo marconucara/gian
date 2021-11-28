@@ -269,10 +269,7 @@ export const BlogArticle: React.FC<BlogArticleProps> = ({
                       <div className="flex flex-wrap justify-center">
                         <div className="w-full lg:w-9/12 px-4 text-center">
                           <Link href="/#contattami">
-                            <a
-                              className="bg-gray-900 text-white active:bg-gray-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
-                              type="button"
-                            >
+                            <a className="bg-gray-900 text-white active:bg-gray-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1">
                               Contattami
                             </a>
                           </Link>

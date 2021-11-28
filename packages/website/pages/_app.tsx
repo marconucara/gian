@@ -19,8 +19,8 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
   return (
     <>
       <DefaultSeo
-        title="Gian"
-        description="Gian"
+        title="Dr Gianluca Santambrogio"
+        description=""
         openGraph={{
           type: "website",
           locale: "it_IT",
