@@ -47,6 +47,28 @@ export default function Navbar(props: { transparent: any }) {
           >
             <ul className="flex flex-col lg:flex-row list-none mr-auto">
               <li className="flex items-center">
+                <Link href="/chi-sono">
+                  <a
+                    className={
+                      (props.transparent
+                        ? "lg:text-white lg:hover:text-gray-300 text-gray-800"
+                        : "text-gray-800 hover:text-gray-600") +
+                      " px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
+                    }
+                  >
+                    <i
+                      className={
+                        (props.transparent
+                          ? "lg:text-gray-300 text-gray-500"
+                          : "text-gray-500") +
+                        " far fa-address-card text-lg leading-lg mr-2"
+                      }
+                    />{" "}
+                    Chi sono
+                  </a>
+                </Link>
+              </li>
+              <li className="flex items-center">
                 <Link href="/blog">
                   <a
                     className={
@@ -114,13 +136,6 @@ export default function Navbar(props: { transparent: any }) {
                   />
                   <span className="lg:hidden inline-block ml-2">Instagram</span>
                 </a>
-              </li>
-              <li className="flex items-center">
-                <Link href="/chi-sono">
-                  <a className="flex items-center text-xs uppercase font-bold leading-snug lg:text-white text-gray-800 px-3 py-4 lg:py-2 hover:opacity-75">
-                    Chi sono
-                  </a>
-                </Link>
               </li>
               <li className="flex items-center">
                 <Link href="/#contattami">
