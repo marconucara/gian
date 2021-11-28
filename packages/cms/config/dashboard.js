@@ -7,7 +7,7 @@ export default {
         order: "_updatedAt desc",
         types: ["blogArticle"],
         limit: 6,
-        createButtonText: "Create a new Article",
+        createButtonText: "Create a new Post",
       },
       layout: {
         height: "small",

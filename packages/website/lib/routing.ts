@@ -5,7 +5,7 @@ import {
   GetRoutesQuery,
   useGetRoutesQuery,
 } from "../generated/graphql";
-export const BLOG_ARTICLES_PER_PAGE = 4;
+export const BLOG_ARTICLES_PER_PAGE = 16;
 
 export const BASE_URL = `${
   process.env.NEXT_PUBLIC_STOREFRONT_URL ||

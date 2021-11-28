@@ -123,7 +123,7 @@ export const SanityPostListing: React.FC<Props> = ({
         </div>
       )}
 
-      {pagination && (
+      {pagination && pagination.pageCounter > 1 && (
         <Pagination
           currentPage={pagination.pageIndex}
           numberOfPages={pagination.pageCounter}
