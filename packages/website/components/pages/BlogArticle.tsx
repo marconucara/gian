@@ -289,6 +289,9 @@ export const BlogArticle: React.FC<BlogArticleProps> = ({
                     </div>
                     <div className="mt-10 py-10 border-t border-gray-300">
                       <div className="flex flex-wrap justify-center">
+                        <p className="text-xl font-semibold mb-8">
+                          Se hai bisogno di informazioni
+                        </p>
                         <div className="w-full lg:w-9/12 px-4 text-center">
                           <Link href="/#contattami">
                             <a className="bg-gray-900 text-white active:bg-gray-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1">
