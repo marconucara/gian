@@ -1341,6 +1341,7 @@ export type SanityImageFragment = (
 export type GetPostListingQueryVariables = Exact<{
   offset: Scalars['Int'];
   limit: Scalars['Int'];
+  idsNin?: Maybe<Array<Scalars['ID']> | Scalars['ID']>;
 }>;
 
 
@@ -1888,8 +1889,9 @@ export type GetImageQueryHookResult = ReturnType<typeof useGetImageQuery>;
 export type GetImageLazyQueryHookResult = ReturnType<typeof useGetImageLazyQuery>;
 export type GetImageQueryResult = Apollo.QueryResult<GetImageQuery, GetImageQueryVariables>;
 export const GetPostListingDocument = gql`
-    query getPostListing($offset: Int!, $limit: Int!) {
+    query getPostListing($offset: Int!, $limit: Int!, $idsNin: [ID!]) {
   listing: allBlogArticle(
+    where: {_id: {nin: $idsNin}}
     sort: {publishDate: DESC}
     limit: $limit
     offset: $offset
@@ -1929,6 +1931,7 @@ ${SanityImageFragmentDoc}`;
  *   variables: {
  *      offset: // value for 'offset'
  *      limit: // value for 'limit'
+ *      idsNin: // value for 'idsNin'
  *   },
  * });
  */

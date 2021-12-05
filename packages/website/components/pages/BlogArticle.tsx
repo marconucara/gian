@@ -18,6 +18,7 @@ import { Breadcrumbs } from "../Breadcrumbs";
 import { SanityImage } from "../sanity/SanityImage";
 
 import { SanitySeo } from "../sanity/SanitySeo";
+import { SanityPostListing } from "../sanity/SanityPostListing";
 
 // this query could be done with this:
 //  Post(id: $id) {
@@ -265,6 +266,27 @@ export const BlogArticle: React.FC<BlogArticleProps> = ({
                         ),
                       ]}
                     />
+                    <div className="flex flex-wrap justify-center text-center pt-8 mt-16 mb-8 border-t border-gray-300">
+                      <div className="w-full  px-4">
+                        <h2 className="text-4xl font-semibold">
+                          Ultimi articoli del blog
+                        </h2>
+                      </div>
+                    </div>
+                    <SanityPostListing
+                      layout="compact"
+                      limit={3}
+                      excludeIds={page?._id ? [page?._id] : []}
+                    />
+                    <div className="text-center mt-6">
+                      <a
+                        href="/blog"
+                        className="bg-gray-900 text-white active:bg-gray-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
+                        style={{ transition: "all .15s ease" }}
+                      >
+                        Vedi tutti
+                      </a>
+                    </div>
                     <div className="mt-10 py-10 border-t border-gray-300">
                       <div className="flex flex-wrap justify-center">
                         <div className="w-full lg:w-9/12 px-4 text-center">

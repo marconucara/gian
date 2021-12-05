@@ -44,6 +44,7 @@ export default function Navbar(props: { transparent: any }) {
               (navbarOpen ? " block rounded shadow-lg" : " hidden")
             }
             id="example-navbar-warning"
+            onClick={() => setNavbarOpen(false)}
           >
             <ul className="flex flex-col lg:flex-row list-none mr-auto">
               <li className="flex items-center">

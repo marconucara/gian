@@ -10,7 +10,7 @@ import {
   useGetPostListingQuery,
 } from "../../generated/graphql";
 import { getReadingTime } from "../../lib/blog";
-import { formatISODate } from "../../lib/date";
+
 import {
   BLOG_ARTICLES_PER_PAGE,
   createSlugFromArray,
@@ -25,8 +25,9 @@ gql`
   ${SanitySeoFragmentDoc}
   ${SanityImageFragmentDoc}
 
-  query getPostListing($offset: Int!, $limit: Int!) {
+  query getPostListing($offset: Int!, $limit: Int!, $idsNin: [ID!]) {
     listing: allBlogArticle(
+      where: { _id: { nin: $idsNin } }
       sort: { publishDate: DESC }
       limit: $limit
       offset: $offset
@@ -54,11 +55,15 @@ gql`
 type Props = {
   pagination?: PaginationProps;
   limit?: number;
+  excludeIds?: string[];
+  layout?: "compact" | "normal";
 };
 
 export const SanityPostListing: React.FC<Props> = ({
   pagination,
   limit = BLOG_ARTICLES_PER_PAGE,
+  excludeIds = [],
+  layout = "normal",
 }) => {
   const offset = ((pagination?.pageIndex || 1) - 1) * limit;
 
@@ -70,15 +75,21 @@ export const SanityPostListing: React.FC<Props> = ({
     variables: {
       offset,
       limit,
+      idsNin: excludeIds,
     },
   });
   if (loading) return <div>loading</div>;
   if (error) return <div>error</div>;
 
+  const containerClassName =
+    layout === "normal"
+      ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 xl:gap-16"
+      : "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 lg:-mx-16";
+
   return (
     <>
       {data?.listing && (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 xl:gap-16">
+        <div className={containerClassName}>
           {data?.listing.map((article, articleIndex) => {
             const slug = getDocumentSlugById({
               routingMapById,
@@ -104,7 +115,7 @@ export const SanityPostListing: React.FC<Props> = ({
                   <Link href={slug}>
                     <a className="text-m font-bold">{article.title || ""}</a>
                   </Link>
-                  <p className="mt-1 text-sx text-gray-500 font-semibold mb-6">
+                  <p className="mt-1 text-sx text-gray-500 font-semibold">
                     {article.subtitle}
                   </p>
                 </div>

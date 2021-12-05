@@ -255,7 +255,7 @@ export const Homepage: React.FC<HomepageProps> = ({
       <section className="pt-20 pb-48">
         <div className="container mx-auto px-4">
           <div className="flex flex-wrap justify-center text-center mb-8">
-            <div className="w-full lg:w-6/12 px-4">
+            <div className="w-full px-4">
               <h2 className="text-4xl font-semibold">
                 Ultimi articoli del blog
               </h2>
@@ -266,7 +266,7 @@ export const Homepage: React.FC<HomepageProps> = ({
               </p> */}
             </div>
           </div>
-          <SanityPostListing limit={4} />
+          <SanityPostListing limit={0} />
           <div className="text-center mt-6">
             <a
               href="/blog"

@@ -48,7 +48,7 @@ export default function Footer() {
                 </a>
               </div>
             </div>
-            <div className="w-full lg:w-6/12 px-4">
+            <div className="w-full sm:pt-6 lg:w-6/12 px-4">
               <div className="flex flex-wrap items-top mb-6">
                 <div className="w-full lg:w-4/12 px-4 ml-auto">
                   <span className="block uppercase text-gray-600 text-sm font-semibold mb-2">
