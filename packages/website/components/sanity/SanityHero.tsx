@@ -21,10 +21,9 @@ type Props = {
 
 export const SanityHero: React.FC<Props> = ({ component: { image } }) => (
   <div
-    className=" top-0 w-full  bg-center bg-cover"
+    className="top-0 w-full  bg-center bg-cover h-44 lg:h-60 xl:h-80"
     style={{
       backgroundImage: `url('${image?.asset?.url}')`,
-      height: "180px",
     }}
   />
 );
