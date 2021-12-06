@@ -7,7 +7,9 @@ export const HomepageServices = () => (
         <div className="items-center flex flex-wrap">
           <div className="w-full md:w-4/12 ml-auto mr-auto px-4">
             <img
-              alt="..."
+              alt=""
+              width="634px"
+              height="800px"
               className="max-w-full rounded-lg shadow-lg"
               src="https://images.unsplash.com/photo-1461532257246-777de18cd58b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&h=800&q=80"
             />
@@ -17,9 +19,9 @@ export const HomepageServices = () => (
               <div className="text-blue-600 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-blue-300">
                 <i className="fas fa-handshake text-xl"></i>
               </div>
-              <h3 className="text-3xl font-semibold">
+              <h2 className="text-3xl font-semibold">
                 Valutazione e colloquio iniziale
-              </h3>
+              </h2>
               <p className="mt-4 text-lg leading-relaxed text-gray-600">
                 Ascolto la tua storia e creo una cartella dettagliata. Penso poi
                 un piano di trattamento personalizzato volto a ottenere i
@@ -95,7 +97,9 @@ export const HomepageServices = () => (
         <div className="items-center flex flex-wrap flex-row-reverse">
           <div className="w-full md:w-4/12 ml-auto mr-auto px-4">
             <img
-              alt="..."
+              alt=""
+              width="634px"
+              height="800px"
               className="max-w-full rounded-lg shadow-lg"
               src="https://images.unsplash.com/photo-1519823551278-64ac92734fb1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80"
             />
@@ -105,9 +109,9 @@ export const HomepageServices = () => (
               <div className="text-blue-600 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-blue-300">
                 <i className="fas fa-hands text-xl"></i>
               </div>
-              <h3 className="text-3xl font-semibold">
+              <h2 className="text-3xl font-semibold">
                 Trattamento e massaggio
-              </h3>
+              </h2>
               <p className="mt-4 text-lg leading-relaxed text-gray-600">
                 Dopo aver individuato il problema andremo a risolverlo in una o
                 più sedute di massaggio.
@@ -183,7 +187,9 @@ export const HomepageServices = () => (
         <div className="items-center flex flex-wrap">
           <div className="w-full md:w-4/12 ml-auto mr-auto px-4">
             <img
-              alt="..."
+              alt=""
+              width="634px"
+              height="800px"
               className="max-w-full rounded-lg shadow-lg"
               src="https://images.unsplash.com/photo-1550259979-ed79b48d2a30?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80"
             />
@@ -193,9 +199,9 @@ export const HomepageServices = () => (
               <div className="text-blue-600 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-blue-300">
                 <i className="fas fa-clipboard text-xl"></i>
               </div>
-              <h3 className="text-3xl font-semibold">
+              <h2 className="text-3xl font-semibold">
                 Scheda di allenamento personalizzata per palestra o casa
-              </h3>
+              </h2>
               <p className="mt-4 text-lg leading-relaxed text-gray-600">
                 Scheda di allenamento su misura in base agli obiettivi della
                 persona, adattata in base agli impegni. Questo servizio è
@@ -273,7 +279,9 @@ export const HomepageServices = () => (
         <div className="items-center flex flex-wrap  flex-row-reverse">
           <div className="w-full md:w-4/12 ml-auto mr-auto px-4">
             <img
-              alt="..."
+              alt=""
+              width="634px"
+              height="800px"
               className="max-w-full rounded-lg shadow-lg"
               src="https://images.unsplash.com/photo-1540206276207-3af25c08abc4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80"
             />
@@ -283,9 +291,9 @@ export const HomepageServices = () => (
               <div className="text-blue-600 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-blue-300">
                 <i className="fas fa-dumbbell text-xl"></i>
               </div>
-              <h3 className="text-3xl font-semibold">
+              <h2 className="text-3xl font-semibold">
                 Personal training in palestra o a casa
-              </h3>
+              </h2>
               <p className="mt-4 text-lg leading-relaxed text-gray-600">
                 Puoi essere allenato direttamente da me in palestra o
                 comodamente a casa con il solo scopo di raggiungere gli
