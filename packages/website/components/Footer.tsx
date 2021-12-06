@@ -27,10 +27,10 @@ export default function Footer() {
         <div className="container mx-auto px-4">
           <div className="flex flex-wrap">
             <div className="w-full lg:w-6/12 px-4 pb-8">
-              <h4 className="text-3xl font-semibold">Restiamo in contatto</h4>
-              <h5 className="text-lg mt-0 mb-2 text-gray-700">
+              <p className="text-3xl font-semibold">Restiamo in contatto</p>
+              <p className="text-lg mt-0 mb-2 text-gray-700">
                 Seguimi sui social network
-              </h5>
+              </p>
               <div className="mt-6">
                 <a
                   href="https://www.facebook.com/Gianluca-Santambrogio-109070334667486"
@@ -46,6 +46,17 @@ export default function Footer() {
                 >
                   <i className="flex fab fa-instagram"></i>
                 </a>
+              </div>
+              <div className="mt-6">
+                <p className="text-lg mt-0 mb-2 text-gray-700">
+                  Telefono:{" "}
+                  <a
+                    className="text-lg text-gray-900 underline"
+                    href="tel:+393392523661"
+                  >
+                    +39 339 252 3661
+                  </a>
+                </p>
               </div>
             </div>
             <div className="w-full lg:w-6/12 px-4">

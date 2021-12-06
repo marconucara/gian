@@ -110,7 +110,7 @@ export const Homepage: React.FC<HomepageProps> = ({
                         layout="fixed"
                         width="150"
                         height="200"
-                        className="shadow-xl rounded-full h-auto align-middle border-none absolute overflow-hidden -ml-20 lg:-ml-16"
+                        className="shadow rounded-full -ml-20 lg:-ml-16"
                       />
                     )}
                   </div>
