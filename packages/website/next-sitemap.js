@@ -1,9 +1,5 @@
 module.exports = {
-  siteUrl: `https://${
-    process.env.NEXT_PUBLIC_STAGE === "production"
-      ? "www"
-      : process.env.NEXT_PUBLIC_STAGE
-  }.gianlucasantambrogio.com`,
+  siteUrl: `https://www.gianlucasantambrogio.com`,
   generateRobotsTxt: true, // (optional)
   robotsTxtOptions: {
     policies:
