@@ -158,14 +158,16 @@ export const Homepage: React.FC<HomepageProps> = ({
                     Seregno (MI)
                   </div> */}
                 <div className="mb-2 text-gray-700 mt-10">
-                  <i className="fas fa-briefcase mr-2 text-lg text-gray-500"></i>
-                  Personal Trainer certificato ISSA
-                  <br />
-                  MCB Massoterapista
-                </div>
-                <div className="mb-2 text-gray-700">
                   <i className="fas fa-university mr-2 text-lg text-gray-500"></i>
                   Laureato in Scienze Motorie e dello Sport
+                </div>
+                <div className="mb-2 text-gray-700">
+                  <i className="fas fa-briefcase mr-2 text-lg text-gray-500"></i>
+                  Chinesiologo
+                  <br />
+                  MCB Massoterapista
+                  <br />
+                  Osteopatia
                 </div>
               </div>
               <div className="mt-10 py-10 border-t border-gray-300">
