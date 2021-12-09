@@ -117,7 +117,7 @@ const getSerializers = ({
       // eslint-disable-next-line react-hooks/rules-of-hooks
       const { data } = useGetImageQuery({ variables: { id: asset._ref } });
       return (
-        <div style={{ maxWidth: "640px", margin: "30px auto 0" }}>
+        <div style={{ maxWidth: "500px", margin: "30px auto 0" }}>
           {data && (
             <SanityImage
               priority
