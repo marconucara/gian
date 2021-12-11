@@ -408,7 +408,7 @@ export const Homepage: React.FC<HomepageProps> = ({
                             </option>
 
                             <option value="Trattamento massoterapico / osteopatico">
-                              Trattamento massoterapico
+                              Trattamento massoterapico / osteopatico
                             </option>
 
                             <option value="Altro / info">Altro / info</option>
