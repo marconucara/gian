@@ -75,7 +75,7 @@ export const Homepage: React.FC<HomepageProps> = ({
         <div
           className="absolute top-0 w-full h-full bg-center bg-cover"
           style={{
-            backgroundImage: `url('${page?.cover?.asset?.url}?w=1200&h=500&fit=crop&auto=format')`,
+            backgroundImage: `url('${page?.cover?.asset?.url}?w=1200&h=800&fit=crop&auto=format')`,
           }}
         >
           <span
