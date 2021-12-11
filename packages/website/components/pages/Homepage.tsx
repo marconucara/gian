@@ -38,7 +38,13 @@ gql`
       profile {
         ...SanityImage
       }
-      introRaw
+      services {
+        title
+        textRaw
+        image {
+          ...SanityImage
+        }
+      }
     }
   }
 `;
@@ -252,7 +258,7 @@ export const Homepage: React.FC<HomepageProps> = ({
         </div>
       </section>
 
-      <HomepageServices />
+      {page?.services && <HomepageServices services={page.services} />}
 
       <section className="pt-12 pb-48">
         <div className="container mx-auto px-4">
