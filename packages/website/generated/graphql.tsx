@@ -369,7 +369,7 @@ export type Homepage = Document & {
   title?: Maybe<Scalars['String']>;
   cover?: Maybe<SeoImage>;
   profile?: Maybe<SeoImage>;
-  introRaw?: Maybe<Scalars['JSON']>;
+  services?: Maybe<Array<Maybe<Service>>>;
 };
 
 export type HomepageFilter = {
@@ -794,6 +794,7 @@ export type SanityImageAsset = Document & {
   mimeType?: Maybe<Scalars['String']>;
   size?: Maybe<Scalars['Float']>;
   assetId?: Maybe<Scalars['String']>;
+  uploadId?: Maybe<Scalars['String']>;
   path?: Maybe<Scalars['String']>;
   url?: Maybe<Scalars['String']>;
   metadata?: Maybe<SanityImageMetadata>;
@@ -819,6 +820,7 @@ export type SanityImageAssetFilter = {
   mimeType?: Maybe<StringFilter>;
   size?: Maybe<FloatFilter>;
   assetId?: Maybe<StringFilter>;
+  uploadId?: Maybe<StringFilter>;
   path?: Maybe<StringFilter>;
   url?: Maybe<StringFilter>;
   metadata?: Maybe<SanityImageMetadataFilter>;
@@ -842,6 +844,7 @@ export type SanityImageAssetSorting = {
   mimeType?: Maybe<SortOrder>;
   size?: Maybe<SortOrder>;
   assetId?: Maybe<SortOrder>;
+  uploadId?: Maybe<SortOrder>;
   path?: Maybe<SortOrder>;
   url?: Maybe<SortOrder>;
   metadata?: Maybe<SanityImageMetadataSorting>;
@@ -937,6 +940,7 @@ export type SanityImageMetadata = {
   dimensions?: Maybe<SanityImageDimensions>;
   palette?: Maybe<SanityImagePalette>;
   lqip?: Maybe<Scalars['String']>;
+  blurHash?: Maybe<Scalars['String']>;
   hasAlpha?: Maybe<Scalars['Boolean']>;
   isOpaque?: Maybe<Scalars['Boolean']>;
 };
@@ -948,6 +952,7 @@ export type SanityImageMetadataFilter = {
   dimensions?: Maybe<SanityImageDimensionsFilter>;
   palette?: Maybe<SanityImagePaletteFilter>;
   lqip?: Maybe<StringFilter>;
+  blurHash?: Maybe<StringFilter>;
   hasAlpha?: Maybe<BooleanFilter>;
   isOpaque?: Maybe<BooleanFilter>;
 };
@@ -959,6 +964,7 @@ export type SanityImageMetadataSorting = {
   dimensions?: Maybe<SanityImageDimensionsSorting>;
   palette?: Maybe<SanityImagePaletteSorting>;
   lqip?: Maybe<SortOrder>;
+  blurHash?: Maybe<SortOrder>;
   hasAlpha?: Maybe<SortOrder>;
   isOpaque?: Maybe<SortOrder>;
 };
@@ -1118,6 +1124,29 @@ export type SeoSorting = {
   noindex?: Maybe<SortOrder>;
 };
 
+export type Service = {
+  __typename?: 'Service';
+  _key?: Maybe<Scalars['String']>;
+  _type?: Maybe<Scalars['String']>;
+  image?: Maybe<SeoImage>;
+  title?: Maybe<Scalars['String']>;
+  textRaw?: Maybe<Scalars['JSON']>;
+};
+
+export type ServiceFilter = {
+  _key?: Maybe<StringFilter>;
+  _type?: Maybe<StringFilter>;
+  image?: Maybe<SeoImageFilter>;
+  title?: Maybe<StringFilter>;
+};
+
+export type ServiceSorting = {
+  _key?: Maybe<SortOrder>;
+  _type?: Maybe<SortOrder>;
+  image?: Maybe<SeoImageSorting>;
+  title?: Maybe<SortOrder>;
+};
+
 export type Slug = {
   __typename?: 'Slug';
   _key?: Maybe<Scalars['String']>;
@@ -1259,7 +1288,7 @@ export type GetHomepageQuery = (
   { __typename?: 'RootQuery' }
   & { page: Array<(
     { __typename?: 'Homepage' }
-    & Pick<Homepage, '_id' | 'title' | 'introRaw'>
+    & Pick<Homepage, '_id' | 'title'>
     & { seo?: Maybe<(
       { __typename?: 'Seo' }
       & SanitySeoFragment
@@ -1269,7 +1298,14 @@ export type GetHomepageQuery = (
     )>, profile?: Maybe<(
       { __typename?: 'SeoImage' }
       & SanityImageFragment
-    )> }
+    )>, services?: Maybe<Array<Maybe<(
+      { __typename?: 'Service' }
+      & Pick<Service, 'title' | 'textRaw'>
+      & { image?: Maybe<(
+        { __typename?: 'SeoImage' }
+        & SanityImageFragment
+      )> }
+    )>>> }
   )> }
 );
 
@@ -1769,7 +1805,13 @@ export const GetHomepageDocument = gql`
     profile {
       ...SanityImage
     }
-    introRaw
+    services {
+      title
+      textRaw
+      image {
+        ...SanityImage
+      }
+    }
   }
 }
     ${SanitySeoFragmentDoc}

@@ -67,9 +67,11 @@ export const Component = ({ as, children, ...props }: any) => {
 
 const getSerializers = ({
   headingRenderers,
+  listStyle,
   headersOffset,
 }: {
   headingRenderers?: React.FC<{ tag: React.ElementType }>[];
+  listStyle: "normal" | "compact";
   headersOffset: number;
 }): Serializer => ({
   types: {
@@ -196,27 +198,44 @@ const getSerializers = ({
   },
   list({ children, type }) {
     if (type === "number") {
-      return <ol className="pl-8 mb-4">{children}</ol>;
+      return (
+        <ol className={listStyle === "normal" ? "pl-8 mb-4" : "pl-8 mb-2"}>
+          {children}
+        </ol>
+      );
     } else {
-      return <ul className="list-disc pl-8 mb-4">{children}</ul>;
+      return (
+        <ul
+          className={
+            listStyle === "normal"
+              ? "list-disc pl-8 mb-4"
+              : "list-disc pl-8 mb-2 -mt-4"
+          }
+        >
+          {children}
+        </ul>
+      );
     }
   },
   listItem({ children }) {
-    return <li className="mb-4">{children}</li>;
+    return <li className={listStyle === "normal" ? "mb-4" : ""}>{children}</li>;
   },
 });
 
 interface BlockContentProps {
   blocks: unknown;
+  listStyle?: "compact" | "normal";
   headingRenderers?: React.FC<{ tag: React.ElementType }>[];
 }
 
 export const BlockContent: React.FC<BlockContentProps> = ({
   blocks,
+  listStyle = "normal",
   headingRenderers = [],
 }) => {
   const serializers = getSerializers({
     headingRenderers,
+    listStyle,
     headersOffset: findHighestHeading(
       blocks as { style: string; _type: string }[]
     ),

@@ -1,6 +1,39 @@
 import { MdHome } from "react-icons/md";
+import { getEditorialBlockText } from "../objects/blockContent";
 
-import { PreviewReturn } from "../schemaTypes";
+import { ObjectType, PreviewReturn } from "../schemaTypes";
+
+export const service: ObjectType = {
+  name: "service",
+  title: "service",
+  type: "object",
+  fields: [
+    {
+      name: "image",
+      title: "Image",
+      type: "seoImage",
+      validation: (Rule) => Rule.required(),
+    },
+    {
+      name: "title",
+      title: "Title",
+      type: "string",
+      validation: (Rule) => Rule.required(),
+    },
+    {
+      name: "text",
+      title: "Text",
+      type: "blockContent",
+      validation: (Rule) => Rule.required(),
+    },
+  ],
+  preview: {
+    select: {
+      title: "title",
+      media: "image",
+    },
+  },
+};
 
 export const homepage = {
   name: "homepage",
@@ -35,9 +68,10 @@ export const homepage = {
         Rule.required(),
     },
     {
-      name: "intro",
-      title: "Intro",
-      type: "blockContent",
+      name: "services",
+      title: "Services",
+      type: "array",
+      of: [{ name: "service", type: "service" }],
     },
   ],
   preview: {
