@@ -13,7 +13,7 @@ export const HomepageServices: React.FC<{ services: any }> = ({ services }) => (
               layout="responsive"
               aspectRatio={4 / 3}
               sizes={{
-                "400": "400px",
+                "600": "600px",
               }}
               className="max-w-full rounded-lg shadow-lg"
             />
@@ -104,7 +104,7 @@ export const HomepageServices: React.FC<{ services: any }> = ({ services }) => (
               layout="responsive"
               aspectRatio={4 / 3}
               sizes={{
-                "400": "400px",
+                "600": "600px",
               }}
               className="max-w-full rounded-lg shadow-lg"
             />
@@ -197,7 +197,7 @@ export const HomepageServices: React.FC<{ services: any }> = ({ services }) => (
               layout="responsive"
               aspectRatio={4 / 3}
               sizes={{
-                "400": "400px",
+                "600": "600px",
               }}
               className="max-w-full rounded-lg shadow-lg"
             />
