@@ -48,6 +48,48 @@ export default function Navbar(props: { transparent: any }) {
           >
             <ul className="flex flex-col lg:flex-row list-none mr-auto">
               <li className="flex items-center">
+                <Link href="/#services-1">
+                  <a
+                    className={
+                      (props.transparent
+                        ? "lg:text-white lg:hover:text-gray-300 text-gray-800"
+                        : "text-gray-800 hover:text-gray-600") +
+                      " px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
+                    }
+                  >
+                    Coaching
+                  </a>
+                </Link>
+              </li>
+              <li className="flex items-center">
+                <Link href="/#services-2">
+                  <a
+                    className={
+                      (props.transparent
+                        ? "lg:text-white lg:hover:text-gray-300 text-gray-800"
+                        : "text-gray-800 hover:text-gray-600") +
+                      " px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
+                    }
+                  >
+                    Massoterapia
+                  </a>
+                </Link>
+              </li>
+              <li className="flex items-center">
+                <Link href="/#services-3">
+                  <a
+                    className={
+                      (props.transparent
+                        ? "lg:text-white lg:hover:text-gray-300 text-gray-800"
+                        : "text-gray-800 hover:text-gray-600") +
+                      " px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
+                    }
+                  >
+                    Osteopatia
+                  </a>
+                </Link>
+              </li>
+              <li className="flex items-center">
                 <Link href="/chi-sono">
                   <a
                     className={

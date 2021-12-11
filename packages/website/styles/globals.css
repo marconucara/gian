@@ -30,3 +30,8 @@ a {
 .post-page.container {
   max-width: 900px;
 }
+
+html,
+body {
+  scroll-behavior: smooth;
+}

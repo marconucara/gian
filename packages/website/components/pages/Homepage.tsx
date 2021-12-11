@@ -308,12 +308,13 @@ export const Homepage: React.FC<HomepageProps> = ({
           </svg>
         </div>
 
-        <div className="container mx-auto px-4 lg:pt-24 lg:pb-64">
+        <div
+          className="container mx-auto px-4 lg:pt-24 lg:pb-64"
+          id="contattami"
+        >
           <div className="flex flex-wrap text-center justify-center">
             <div className="w-full lg:w-6/12 px-4 mb-8">
-              <h2 className="text-4xl font-semibold text-white" id="contattami">
-                Contattami
-              </h2>
+              <h2 className="text-4xl font-semibold text-white">Contattami</h2>
               {/* <p className="text-lg leading-relaxed mt-4 mb-4 text-gray-500">
                   Qua possiamo mettere qualcosa ma per ora non ho in mente
                   niente
@@ -383,9 +384,8 @@ export const Homepage: React.FC<HomepageProps> = ({
                   <div className="flex-auto p-5 lg:p-10">
                     {/* <h4 className="text-2xl font-semibold">Contattami</h4> */}
                     <p className="leading-relaxed mt-1 mb-4 text-gray-600">
-                      Compila il modulo per fissare un appuntamento e spiegami
-                      in breve la tua problematica, ti risponderò via Whatsapp
-                      non appena leggerò il tuo messaggio.
+                      Compila il modulo sottostante, ti risponderò via Whatsapp
+                      non appena leggerò la tua richiesta.
                     </p>
                     {formStatus === false ? (
                       <>
@@ -402,16 +402,15 @@ export const Homepage: React.FC<HomepageProps> = ({
                             name="topic"
                           >
                             <option value=""></option>
+
+                            <option value="Servizio Coaching">
+                              Servizio Coaching
+                            </option>
+
                             <option value="Trattamento massoterapico / osteopatico">
                               Trattamento massoterapico
                             </option>
-                            <option value="Scheda di allenamento con misure massa magra / grassa">
-                              Scheda di allenamento con misure massa magra /
-                              grassa
-                            </option>
-                            <option value="Personal training">
-                              Personal training
-                            </option>
+
                             <option value="Altro / info">Altro / info</option>
                           </select>
                         </div>
