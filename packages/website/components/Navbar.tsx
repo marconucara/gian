@@ -1,6 +1,8 @@
 import React from "react";
 import Link from "next/link";
 
+//TODO: smooth scroll Link https://github.com/vercel/next.js/issues/5136
+
 export default function Navbar(props: { transparent: any }) {
   const [navbarOpen, setNavbarOpen] = React.useState(false);
   return (
