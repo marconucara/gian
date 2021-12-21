@@ -42,7 +42,7 @@ export const SanitySeo: React.FC<Props> = ({ component, slug }) => {
 
   const pageUrl = `${
     process.env.NEXT_PUBLIC_STOREFRONT_URL ||
-    "https://www.gianlucasantambrogio.it"
+    "https://www.gianlucasantambrogio.com"
   }${slug}`.replace(/\/*$/, "");
 
   const openGraphImageSize = {
