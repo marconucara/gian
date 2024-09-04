@@ -121,6 +121,7 @@ export default function Footer() {
             <div className="w-full md:w-6/12 px-4 mx-auto text-center">
               <div className="text-sm text-gray-600 font-semibold py-1">
                 Copyright © {new Date().getFullYear()} Dr. Gianluca Santambrogio
+                | P.iva 122922040966
               </div>
             </div>
           </div>
